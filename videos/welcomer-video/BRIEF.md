@@ -23,6 +23,7 @@ warm beleuchteten Hotel-Lobby. Premium-Look à la Iman Gadzhi: ruhig, edel, eine
 - assets/clip1.mp4 — Kunden-Clip 1 (Sushi-Laden), ab 0:00, 4:5 zugeschnitten (eingebrannte Untertitel weggeschnitten), stumm
 - assets/clip2.mp4 — Kunden-Clip 2 (Restaurant), ab 0:16, 4:5 zugeschnitten, stumm
 - assets/fonts/ — Manrope (Sans) + Instrument Serif (kursiv)
+- assets/music/bgm_edit.wav — Musikbett „Family Affair“ (Mary J. Blige, Instrumental), vom Nutzer geliefert, takt-genau geschnitten mit `edit/make_bgm.py` (nicht im Git)
 
 ## Customizations
 
@@ -36,4 +37,7 @@ warm beleuchteten Hotel-Lobby. Premium-Look à la Iman Gadzhi: ruhig, edel, eine
 
 - Alle Bildschirmtexte deutsch, echte Umlaute und ß, deutsche Typografie
 - Format bleibt 16:9 (1920 × 1080), kein 9:16-Export
-- Musik: **keine** (Nutzerentscheidung) – nur Stimme + dezente SFX aus der mitgelieferten Bibliothek
+- Musik: „Family Affair“ (Instrumental, 92,9 BPM), Nutzerwunsch. Video startet auf einer „1“, Sprung ins Song-Outro bei 46,503 s,
+  Schlussschlag bei 59,421 s direkt nach dem letzten Wort. Voiceover-Carve gegen die Stimme, Bett ca. 14 LU unter der Stimme.
+  Hinweis an den Nutzer: kommerzieller Song, für die Website ist eine Lizenz nötig.
+- SFX dezent (ca. −7 dB), keine Bass-Booms und kein Schluss-Chime (kollidieren mit der Musik)

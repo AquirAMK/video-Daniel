@@ -72,7 +72,13 @@ Ergebnis: ca. **58–60 s** statt 1:09.
 - **Captions:** zweistufig (kleine Einleitung + großes Schlüsselwort), Zonen links/rechts neben dem Kopf,
   pro Satz genau ein Akzentwort in Serif kursiv.
 - **Platzhalter:** `hallo@deine-agentur.de`, `+49 000 000 000` (in `index.html` an je 3 Stellen).
-- **Musik:** keine (Nutzerentscheidung), nur Stimme + dezente SFX aus der mitgelieferten Bibliothek.
+- **Musik:** „Family Affair“ (Instrumental), vom Nutzer nachgeliefert. Tempo 92,9 BPM (Takt 2,5835 s), 8-Takt-Phrasen.
+  Schnitt (`edit/make_bgm.py`): Video 0–46,503 s = Song-Takte 6–23, danach Song-Outro (Takte 96–101), Schlussschlag 59,421 s.
+  Mix: Voiceover-Carve (Stärke 0,8) gegen die Stimme, Bett-Pegel 0,32, Hand-Stufe „Akzente Start/Schluss“.
+- **Übergänge auf dem Beat-Raster:** One-Pager 5,167 (Downbeat) · Allerwichtigste 8,396–10,98 (genau ein Takt) ·
+  Leistungen 20,668 (Phrasenbeginn) · Blueprint 29,065 · One-Pager 2 46,503 (Downbeat = Musik-Sprung) ·
+  Endkarte 56,838 (Downbeat) · Goldlinie 59,41 mit dem Schlussschlag. Sprecherschnitte 17,767 und 32,533 liegen auf Achteln.
+- **SFX:** ca. −7 dB, Bass-Booms und Schluss-Chime entfernt.
 - **Endkarte:** dunkel (Espresso) mit *Zusammenarbeit* in Gold-Serif und den Kontakt-Platzhaltern, abweichend vom
   Plan (helles Papier); auf Wunsch umstellbar.
 - **Vorschau v1:** 60,5 s, −14,6 LUFS, Spitzenpegel −1,4 dBTP. Master `renders/welcomer_vorschau_v1.mp4`,
