@@ -36,4 +36,4 @@ warm beleuchteten Hotel-Lobby. Premium-Look à la Iman Gadzhi: ruhig, edel, eine
 
 - Alle Bildschirmtexte deutsch, echte Umlaute und ß, deutsche Typografie
 - Format bleibt 16:9 (1920 × 1080), kein 9:16-Export
-- Musik: kein HeyGen-Login → Quelle der Musik wird mit dem Nutzer geklärt (lokal generiert / Bibliothek / eigener Track); SFX aus der mitgelieferten Bibliothek
+- Musik: **keine** (Nutzerentscheidung) – nur Stimme + dezente SFX aus der mitgelieferten Bibliothek

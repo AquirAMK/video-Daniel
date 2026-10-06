@@ -72,4 +72,4 @@ Ergebnis: ca. **58–60 s** statt 1:09.
 - **Captions:** zweistufig (kleine Einleitung + großes Schlüsselwort), Zonen links/rechts neben dem Kopf,
   pro Satz genau ein Akzentwort in Serif kursiv.
 - **Platzhalter:** `hallo@deine-agentur.de`, `+49 000 000 000` (in `index.html` an je 3 Stellen).
-- **Musik:** offen (Quelle mit dem Nutzer klären), SFX aus der mitgelieferten Bibliothek.
+- **Musik:** keine (Nutzerentscheidung), nur Stimme + dezente SFX aus der mitgelieferten Bibliothek.
