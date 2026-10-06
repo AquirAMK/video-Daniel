@@ -59,3 +59,17 @@ Ergebnis: ca. **58–60 s** statt 1:09.
 ## Offene Punkte
 1. Markenfarbe: Gold-Vorschlag ok, oder habt ihr eine eigene Agenturfarbe/ein Logo?
 2. Wasserzeichen/Handle unten mittig: weglassen (da „ohne Namen“)?
+
+---
+
+## Umsetzung (Stand v1, abgenommen mit: Gold ok, kein Wasserzeichen, kein Text bei den Kunden-Clips)
+
+- **Rohschnitt:** 59,7 s (`edit/make_edl.py` → `edit/cut_segments.sh`), Zeitachse unten = Ausgabe-Zeit.
+- **Projekt:** `videos/welcomer-video/` (HyperFrames), Nachbearbeitung `edit/finish.sh`.
+- **Kunden-Clips:** Karten sitzen auf den Handflächen (Hand-Tracking per MediaPipe), rechts Clip 1 ab 0:00,
+  links Clip 2 ab 0:16, sichtbar ca. 38,4–40,6 s, stumm, Clip 1 auf 4:5 beschnitten (eingebrannte
+  Untertitel entfernt), keinerlei Text.
+- **Captions:** zweistufig (kleine Einleitung + großes Schlüsselwort), Zonen links/rechts neben dem Kopf,
+  pro Satz genau ein Akzentwort in Serif kursiv.
+- **Platzhalter:** `hallo@deine-agentur.de`, `+49 000 000 000` (in `index.html` an je 3 Stellen).
+- **Musik:** offen (Quelle mit dem Nutzer klären), SFX aus der mitgelieferten Bibliothek.
