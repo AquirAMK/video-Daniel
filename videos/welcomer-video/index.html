@@ -1388,7 +1388,7 @@
           { zone: "AL", out: 12.74, lines: [{ row: 1, cls: "s", w: [["Hier", 11.1], ["stellen", 11.28]] }, { row: 2, cls: "b", w: [["wir", 11.48], ["uns", 11.7], ["vor", 12.2]] }] },
           { zone: "AR", out: 14.24, lines: [{ row: 1, cls: "s", w: [["das,", 12.86], ["was", 12.98], ["wir", 13.16]] }, { row: 2, cls: "b", w: [["machen", 13.4]] }] },
           { zone: "AL", out: 16.2, lines: [{ row: 1, cls: "s", w: [["von", 14.84], ["uns", 15.02]] }, { row: 2, cls: "b", w: [["erwarten", 15.3]] }, { row: 3, cls: "s", w: [["kannst", 15.8]] }] },
-          { zone: "AR", dy: 70, out: 17.66, lines: [{ row: 1, cls: "s", w: [["für", 16.06], ["eine", 16.26], ["potenzielle", 16.48]] }, { row: 2, cls: "b serif", w: [["Zusammenarbeit", 17.04]] }] },
+          { zone: "AR", dy: 70, out: 17.66, outD: 0.1, lines: [{ row: 1, cls: "s", w: [["für", 16.06], ["eine", 16.26], ["potenzielle", 16.48]] }, { row: 2, cls: "b serif", w: [["Zusammenarbeit", 17.04]] }] },
           { zone: "BR", out: 19.36, lines: [{ row: 1, cls: "s", w: [["Bei", 17.86], ["unseren", 18.0]] }, { row: 2, cls: "b", w: [["Leistungen", 18.26]] }] },
           { zone: "BL", out: 20.62, lines: [{ row: 1, cls: "s", w: [["breit", 19.56], ["gefächertes", 19.76]] }, { row: 2, cls: "b serif", w: [["Spektrum", 20.14]] }] },
           { zone: "AR", out: 34.0, lines: [{ row: 1, cls: "s", w: [["ein", 32.84], ["sehr", 33.04]] }, { row: 2, cls: "b", w: [["junges", 33.38], ["Team", 33.74]] }] },
@@ -1434,7 +1434,7 @@
             });
             if (ln.out) gOut(ln.el, ln.out, 0.16);
           });
-          gOut(box, c.out);
+          gOut(box, c.out, c.outD); // outD: kürzer, wenn ein Flash-Schnitt folgt
         });
 
         // ---------- One-Pager 1 (5.3 – 8.75) ----------
