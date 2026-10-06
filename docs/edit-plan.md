@@ -73,3 +73,7 @@ Ergebnis: ca. **58–60 s** statt 1:09.
   pro Satz genau ein Akzentwort in Serif kursiv.
 - **Platzhalter:** `hallo@deine-agentur.de`, `+49 000 000 000` (in `index.html` an je 3 Stellen).
 - **Musik:** keine (Nutzerentscheidung), nur Stimme + dezente SFX aus der mitgelieferten Bibliothek.
+- **Endkarte:** dunkel (Espresso) mit *Zusammenarbeit* in Gold-Serif und den Kontakt-Platzhaltern, abweichend vom
+  Plan (helles Papier); auf Wunsch umstellbar.
+- **Vorschau v1:** 60,5 s, −14,6 LUFS, Spitzenpegel −1,4 dBTP. Master `renders/welcomer_vorschau_v1.mp4`,
+  komprimierte Kopie `_web.mp4` (< 30 MB) für den Versand.
