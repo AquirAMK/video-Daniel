@@ -7,5 +7,35 @@
       "Bash(graphify install --help)",
       "Bash(graphify install)"
     ]
+  },
+  "skillOverrides": {
+    "anthropic-skills:docx": "off",
+    "anthropic-skills:pptx": "off",
+    "anthropic-skills:xlsx": "off",
+    "anthropic-skills:pdf": "off",
+    "anthropic-skills:morning": "off",
+    "anthropic-skills:google-workspace": "off",
+    "anthropic-skills:import-memory": "off",
+    "anthropic-skills:setup-writing-style": "off",
+    "anthropic-skills:10k-websites": "off",
+    "anthropic-skills:docs": "off",
+    "anthropic-skills:skill-creator": "name-only",
+    "anthropic-skills:find-skills": "name-only",
+    "dataviz": "off",
+    "claude-api": "off",
+    "plugin-authoring": "off",
+    "keybindings-help": "off",
+    "code-review": "off",
+    "simplify": "off",
+    "security-review": "off",
+    "fewer-permission-prompts": "off",
+    "init": "off",
+    "run": "off",
+    "loop": "off",
+    "workflow-authoring": "off",
+    "session-start-hook": "off",
+    "artifact-design": "name-only",
+    "artifact-diagramming": "off",
+    "artifact-capabilities": "off"
   }
 }
