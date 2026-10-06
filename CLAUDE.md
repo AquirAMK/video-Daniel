@@ -3,6 +3,12 @@
 Ziel: Die eigene Rohdatei (Talking Head) gemeinsam im Premium-Stil à la Iman Gadzhi schneiden.
 Kommunikation mit dem Nutzer auf Deutsch.
 
+**Feste Vorgaben des Nutzers:**
+- Das Video ist **auf Deutsch** gesprochen. **Alle** Bildschirmtexte, Captions und Untertitel sind deutsch
+  (echte Umlaute und ß, deutsche Typografie).
+- Format: Rohmaterial kommt in **16:9**, das Endprodukt bleibt **16:9** (1920 × 1080). Kein 9:16-Export,
+  außer der Nutzer verlangt es ausdrücklich.
+
 - **Verbindliches Regelwerk:** `docs/styleguide.md` (Rhythmus, Farbe, Typo, Captions, Bausteine A–J,
   Übergänge, Sound, Workflow). Jeder Schnitt folgt diesem Dokument.
 - Hintergrund und Tutorial-Rezepte: `docs/iman-gadzhi-stil-recherche.md`
