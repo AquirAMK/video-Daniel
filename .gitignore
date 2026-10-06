@@ -2,3 +2,8 @@ raw/
 work/
 *.mov
 *.mp4
+edit/segs/
+edit/matte/
+videos/*/snapshots/
+videos/*/renders/
+videos/*/.hyperframes/

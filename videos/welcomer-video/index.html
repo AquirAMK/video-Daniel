@@ -1,0 +1,1597 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Welcomer-Video</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-VF-latin.woff2") format("woff2");
+        font-weight: 200 800;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Instrument Serif";
+        src: url("assets/fonts/InstrumentSerif-Italic-latin.woff2") format("woff2");
+        font-weight: 400;
+        font-style: italic;
+      }
+      @font-face {
+        font-family: "Instrument Serif";
+        src: url("assets/fonts/InstrumentSerif-Regular-latin.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      :root {
+        --espresso: #17110d;
+        --espresso-2: #241a13;
+        --ink: #1e1611;
+        --paper: #f3eee6;
+        --cream: #f4ecdd;
+        --gold: #d4af6a;
+        --gold-deep: #a8813f;
+        --bronze: #6b4c17;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--espresso);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--espresso);
+        font-family: "Manrope", sans-serif;
+        color: var(--cream);
+      }
+      .layer {
+        position: absolute;
+        inset: 0;
+      }
+      .clip.scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        background: url("assets/img/grain.png") repeat;
+        mix-blend-mode: overlay;
+        opacity: 0.16;
+        pointer-events: none;
+      }
+
+      /* ---------- Bühne hinter dem One-Pager ---------- */
+      #stage-bg {
+        z-index: 0;
+        opacity: 0;
+        background:
+          radial-gradient(60% 55% at 50% 42%, rgba(201, 163, 91, 0.2), rgba(201, 163, 91, 0) 70%),
+          radial-gradient(120% 90% at 50% 50%, #221810 0%, #120d0a 100%);
+      }
+
+      /* ---------- A-Roll ---------- */
+      #aroll-cam {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        z-index: 5;
+        overflow: hidden;
+        transform-origin: 0 0;
+      }
+      #aroll-fx,
+      #aroll-inv {
+        position: absolute;
+        inset: 0;
+      }
+      #aroll {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #aroll-shade {
+        z-index: 6;
+        opacity: 0;
+        background: radial-gradient(75% 75% at 50% 50%, rgba(23, 17, 13, 0.55), rgba(18, 13, 10, 0.92));
+      }
+
+      /* ---------- Hook ---------- */
+      #hook {
+        z-index: 8;
+      }
+      #hook-small {
+        position: absolute;
+        left: 436px;
+        top: 66px;
+        font-weight: 800;
+        font-size: 34px;
+        letter-spacing: 0.5em;
+        color: #2b2018;
+        text-shadow: 0 0 18px rgba(255, 244, 224, 0.7);
+      }
+      #hook-word {
+        position: absolute;
+        left: 0;
+        width: 1920px;
+        top: 96px;
+        text-align: center;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 250px;
+        line-height: 1;
+        color: #241810;
+        white-space: nowrap;
+      }
+      #hook-word span,
+      #aw-word span {
+        display: inline-block;
+      }
+
+      /* ---------- Captions (zweistufig) ---------- */
+      #captions {
+        z-index: 10;
+      }
+      .cap {
+        position: absolute;
+        display: grid;
+        white-space: nowrap;
+        color: var(--ink);
+        text-shadow:
+          0 0 22px rgba(255, 244, 224, 0.85),
+          0 0 4px rgba(255, 244, 224, 0.6);
+      }
+      .cap.AR {
+        left: 1120px;
+        top: 176px;
+        justify-items: start;
+      }
+      .cap.AL {
+        right: 1145px;
+        top: 176px;
+        justify-items: end;
+      }
+      .cap.BR {
+        left: 1200px;
+        top: 250px;
+        justify-items: start;
+      }
+      .cap.BL {
+        right: 1040px;
+        top: 250px;
+        justify-items: end;
+      }
+      .cap .ln {
+        display: block;
+      }
+      .cap .s {
+        font-weight: 600;
+        font-size: 34px;
+        line-height: 1.25;
+        color: #2b2018;
+      }
+      .cap .b {
+        font-weight: 800;
+        font-size: 80px;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      .cap .b.serif {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 108px;
+        line-height: 0.92;
+        letter-spacing: -0.005em;
+        color: var(--bronze);
+      }
+      .cap .w {
+        display: inline-block;
+        opacity: 0;
+      }
+
+      /* ---------- One-Pager-Mockup ---------- */
+      .op {
+        z-index: 2;
+        opacity: 0;
+      }
+      .op-cam {
+        position: absolute;
+        inset: 0;
+        transform-origin: 960px 540px;
+      }
+      .op-card {
+        position: absolute;
+        left: 410px;
+        top: 160px;
+        width: 1100px;
+        height: 760px;
+        border-radius: 22px;
+        overflow: hidden;
+        background: var(--paper);
+        box-shadow:
+          0 0 0 1.5px rgba(212, 175, 106, 0.55),
+          0 40px 90px rgba(0, 0, 0, 0.55),
+          0 0 80px rgba(212, 175, 106, 0.18);
+      }
+      .op-chrome {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 52px;
+        background: #e8dfd0;
+        border-bottom: 1.5px solid #d8cbb5;
+      }
+      .op-dot {
+        position: absolute;
+        top: 20px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #c9b89c;
+      }
+      .op-url {
+        position: absolute;
+        left: 320px;
+        top: 12px;
+        width: 460px;
+        height: 28px;
+        border-radius: 14px;
+        background: #f7f2ea;
+      }
+      .op-url svg {
+        position: absolute;
+        left: 12px;
+        top: 5px;
+        width: 18px;
+        height: 18px;
+      }
+      .op-url .bar {
+        position: absolute;
+        left: 40px;
+        top: 11px;
+        width: 210px;
+        height: 7px;
+        border-radius: 4px;
+        background: #d9cdb9;
+      }
+      .op-view {
+        position: absolute;
+        left: 0;
+        top: 52px;
+        width: 1100px;
+        height: 708px;
+        overflow: hidden;
+      }
+      .op-page {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1100px;
+        height: 1900px;
+      }
+      .op-nav-logo {
+        position: absolute;
+        left: 56px;
+        top: 24px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--gold-deep);
+      }
+      .op-nav-name {
+        position: absolute;
+        left: 86px;
+        top: 29px;
+        width: 110px;
+        height: 10px;
+        border-radius: 5px;
+        background: #3a2d22;
+      }
+      .op-nav-item {
+        position: absolute;
+        top: 30px;
+        width: 64px;
+        height: 8px;
+        border-radius: 4px;
+        background: #c7b8a0;
+      }
+      .op-hero {
+        position: absolute;
+        left: 56px;
+        top: 80px;
+        width: 988px;
+        height: 556px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #2a1f17;
+      }
+      .op-hero video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .op-bar {
+        position: absolute;
+        height: 12px;
+        border-radius: 6px;
+        background: #cbbda6;
+      }
+      .op-h {
+        position: absolute;
+        left: 56px;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 50px;
+        line-height: 1;
+        color: var(--ink);
+      }
+      .op-tile {
+        position: absolute;
+        width: 210px;
+        height: 150px;
+        border-radius: 16px;
+        background: #ebe3d6;
+        border: 1.5px solid #dccfb9;
+      }
+      .op-tile svg {
+        position: absolute;
+        left: 22px;
+        top: 22px;
+        width: 46px;
+        height: 46px;
+      }
+      .op-tile .op-bar {
+        left: 22px;
+        width: 120px;
+        height: 10px;
+      }
+      .op-thumb {
+        position: absolute;
+        width: 220px;
+        height: 275px;
+        border-radius: 16px;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        border: 1.5px solid #dccfb9;
+      }
+      .op-footer {
+        position: absolute;
+        left: 0;
+        top: 1500px;
+        width: 1100px;
+        height: 400px;
+        background: var(--espresso-2);
+      }
+      .op-footer .op-h {
+        top: 46px;
+        color: var(--cream);
+        font-size: 60px;
+      }
+      .op-row {
+        position: absolute;
+        left: 56px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-weight: 600;
+        font-size: 30px;
+        color: var(--cream);
+      }
+      .op-ico {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .op-ico svg {
+        width: 26px;
+        height: 26px;
+      }
+      .op-outline {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1100px;
+        height: 760px;
+        overflow: visible;
+      }
+      .op-tag {
+        position: absolute;
+        left: 1540px;
+        top: 250px;
+        padding: 12px 24px;
+        border-radius: 30px;
+        background: var(--gold);
+        color: var(--espresso);
+        font-weight: 800;
+        font-size: 30px;
+        letter-spacing: 0.01em;
+        opacity: 0;
+      }
+      .op-leader {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+      }
+      .op-scroll {
+        position: absolute;
+        left: 1545px;
+        top: 470px;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 2px solid rgba(212, 175, 106, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+      }
+      .op-scroll svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      /* ---------- Vollbild: Allerwichtigste (hell) ---------- */
+      #sc-allerw {
+        z-index: 20;
+        background: var(--paper);
+      }
+      .paper-bg {
+        position: absolute;
+        inset: 0;
+        background: url("assets/img/paper.jpg") center / cover no-repeat;
+      }
+      .leaf {
+        position: absolute;
+        width: 1400px;
+        height: 180px;
+        border-radius: 90px;
+        background: rgba(84, 62, 36, 0.09);
+        filter: blur(40px);
+      }
+      .aw-cam {
+        position: absolute;
+        inset: 0;
+        transform-origin: 700px 520px;
+      }
+      .frame-line {
+        position: absolute;
+        left: 64px;
+        top: 64px;
+        width: 1792px;
+        height: 952px;
+        border: 1.5px solid rgba(168, 129, 63, 0.45);
+        border-radius: 6px;
+      }
+      #aw-das {
+        position: absolute;
+        opacity: 0;
+        left: 262px;
+        top: 318px;
+        font-weight: 700;
+        font-size: 46px;
+        color: var(--bronze);
+        letter-spacing: 0.02em;
+      }
+      #aw-word {
+        position: absolute;
+        left: 240px;
+        top: 372px;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 226px;
+        line-height: 1;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      #aw-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+      }
+      #aw-sub {
+        position: absolute;
+        left: 264px;
+        top: 700px;
+        font-weight: 500;
+        font-size: 42px;
+        color: #3a2c20;
+        white-space: nowrap;
+      }
+      #aw-sub span {
+        display: inline-block;
+        opacity: 0;
+      }
+      .aw-index {
+        position: absolute;
+        right: 120px;
+        bottom: 104px;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 40px;
+        color: var(--gold-deep);
+      }
+
+      /* ---------- Vollbild: Leistungen (dunkel) ---------- */
+      #sc-icons {
+        z-index: 20;
+        background:
+          radial-gradient(55% 60% at 50% 36%, rgba(201, 163, 91, 0.2), rgba(201, 163, 91, 0) 72%),
+          radial-gradient(120% 100% at 50% 50%, #211710 0%, #110c09 100%);
+      }
+      .ic-cam {
+        position: absolute;
+        inset: 0;
+        transform-origin: 960px 540px;
+      }
+      .ic-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1.5px solid rgba(212, 175, 106, 0.14);
+      }
+      #ic-head {
+        position: absolute;
+        left: 0;
+        width: 1920px;
+        top: 196px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 28px;
+        letter-spacing: 0.34em;
+        color: var(--gold);
+        opacity: 0;
+      }
+      #ic-group {
+        position: absolute;
+        inset: 0;
+        transform-origin: 960px 520px;
+      }
+      .ic-tile {
+        position: absolute;
+        top: 412px;
+        width: 176px;
+        height: 176px;
+        border-radius: 40px;
+        background: linear-gradient(150deg, rgba(255, 240, 215, 0.12), rgba(255, 240, 215, 0.03));
+        border: 1.5px solid rgba(212, 175, 106, 0.6);
+        box-shadow:
+          0 0 40px rgba(212, 175, 106, 0.16),
+          inset 0 1px 0 rgba(255, 240, 215, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+      }
+      .ic-tile svg {
+        width: 86px;
+        height: 86px;
+      }
+      .ic-label {
+        position: absolute;
+        top: 624px;
+        width: 320px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 1.12;
+        color: var(--cream);
+        opacity: 0;
+      }
+      #ic-links,
+      #ic-growth {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+      }
+      #ic-biz {
+        position: absolute;
+        left: 300px;
+        top: 930px;
+        font-weight: 600;
+        font-size: 38px;
+        color: rgba(244, 236, 221, 0.8);
+      }
+      #ic-biz span,
+      #bp-sub span,
+      #end-small span,
+      #end-tail span {
+        display: inline-block;
+        opacity: 0;
+      }
+      #ic-grow {
+        position: absolute;
+        left: 900px;
+        top: 500px;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 176px;
+        line-height: 1;
+        color: var(--gold);
+        opacity: 0;
+      }
+
+      /* ---------- Statement: Blueprint → Umsetzung ---------- */
+      #sc-blueprint {
+        z-index: 14;
+      }
+      #bp-vom,
+      #bp-bis {
+        position: absolute;
+        font-weight: 600;
+        font-size: 42px;
+        color: rgba(244, 236, 221, 0.8);
+        opacity: 0;
+      }
+      #bp-vom {
+        left: 360px;
+        top: 302px;
+      }
+      #bp-blue {
+        position: absolute;
+        left: 350px;
+        top: 370px;
+        font-weight: 800;
+        font-size: 128px;
+        line-height: 1;
+        letter-spacing: -0.035em;
+        color: var(--cream);
+        opacity: 0;
+      }
+      #bp-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: visible;
+      }
+      #bp-bis {
+        left: 1006px;
+        top: 582px;
+      }
+      #bp-um {
+        position: absolute;
+        left: 990px;
+        top: 640px;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 190px;
+        line-height: 1;
+        color: var(--gold);
+        opacity: 0;
+      }
+      #bp-sub {
+        position: absolute;
+        left: 1008px;
+        top: 852px;
+        font-weight: 500;
+        font-size: 40px;
+        color: rgba(244, 236, 221, 0.88);
+      }
+
+      /* ---------- Kunden-Karten auf den Händen ---------- */
+      #hands {
+        z-index: 12;
+      }
+      .ccard {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 264px;
+        height: 330px;
+        opacity: 0;
+      }
+      .ccard-glow {
+        position: absolute;
+        left: -158px;
+        top: -125px;
+        width: 580px;
+        height: 580px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 226, 160, 0.75) 0%, rgba(212, 175, 106, 0.32) 30%, rgba(212, 175, 106, 0) 66%);
+        opacity: 0;
+      }
+      .ccard-frame {
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        overflow: hidden;
+        background: #1b130e;
+        border: 2px solid rgba(222, 186, 118, 0.95);
+        box-shadow:
+          0 0 0 1px rgba(255, 236, 200, 0.25) inset,
+          0 0 36px rgba(212, 175, 106, 0.42),
+          0 28px 54px rgba(25, 14, 6, 0.5);
+      }
+      .ccard-frame video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ccard-sheen {
+        position: absolute;
+        top: -20%;
+        left: -60%;
+        width: 50%;
+        height: 140%;
+        rotate: -12deg;
+        background: linear-gradient(100deg, rgba(255, 245, 225, 0) 0%, rgba(255, 245, 225, 0.38) 50%, rgba(255, 245, 225, 0) 100%);
+      }
+
+      /* ---------- Kontakt-Karten (Glas) ---------- */
+      #sc-contact {
+        z-index: 12;
+      }
+      .gcard {
+        position: absolute;
+        left: 1150px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 22px 34px 22px 24px;
+        border-radius: 28px;
+        background: rgba(26, 18, 13, 0.62);
+        backdrop-filter: blur(16px) saturate(115%);
+        border: 1.5px solid rgba(212, 175, 106, 0.62);
+        box-shadow:
+          0 24px 60px rgba(20, 12, 6, 0.4),
+          inset 0 1px 0 rgba(255, 240, 215, 0.16);
+        overflow: hidden;
+        opacity: 0;
+      }
+      .gcard .gico {
+        width: 76px;
+        height: 76px;
+        flex: 0 0 76px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #ecd29a, #c49a52 70%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .gcard .gico svg {
+        width: 40px;
+        height: 40px;
+      }
+      .gcard .glabel {
+        font-weight: 700;
+        font-size: 22px;
+        letter-spacing: 0.26em;
+        color: var(--gold);
+      }
+      .gcard .gval {
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 1.15;
+        color: var(--cream);
+        white-space: nowrap;
+      }
+      .gsheen {
+        position: absolute;
+        top: -30%;
+        left: -40%;
+        width: 30%;
+        height: 160%;
+        background: linear-gradient(100deg, rgba(255, 245, 225, 0) 0%, rgba(255, 245, 225, 0.22) 50%, rgba(255, 245, 225, 0) 100%);
+      }
+      .chip {
+        position: absolute;
+        top: 600px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 24px 12px 16px;
+        border-radius: 40px;
+        background: rgba(26, 18, 13, 0.62);
+        backdrop-filter: blur(14px);
+        border: 1.5px solid rgba(212, 175, 106, 0.55);
+        font-weight: 700;
+        font-size: 28px;
+        color: var(--cream);
+        opacity: 0;
+      }
+      .chip svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      /* ---------- Endkarte ---------- */
+      #sc-end {
+        z-index: 14;
+      }
+      #end-bg {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        background:
+          radial-gradient(55% 55% at 50% 46%, rgba(201, 163, 91, 0.16), rgba(201, 163, 91, 0) 72%),
+          radial-gradient(120% 100% at 50% 50%, #211710 0%, #110c09 100%);
+      }
+      #end-small {
+        position: absolute;
+        left: 0;
+        width: 1920px;
+        top: 276px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 44px;
+        color: rgba(244, 236, 221, 0.86);
+      }
+      #end-word {
+        position: absolute;
+        left: 0;
+        width: 1920px;
+        top: 358px;
+        text-align: center;
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 230px;
+        line-height: 1;
+        color: var(--gold);
+        opacity: 0;
+      }
+      #end-tail {
+        position: absolute;
+        left: 0;
+        width: 1920px;
+        top: 618px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 44px;
+        color: rgba(244, 236, 221, 0.86);
+      }
+      #end-rule {
+        position: absolute;
+        left: 760px;
+        top: 732px;
+        width: 400px;
+        height: 2px;
+        background: var(--gold);
+        transform-origin: 50% 50%;
+        opacity: 0;
+      }
+      #end-contact {
+        position: absolute;
+        left: 0;
+        width: 1920px;
+        top: 768px;
+        display: flex;
+        justify-content: center;
+        gap: 56px;
+        font-weight: 600;
+        font-size: 34px;
+        color: var(--cream);
+        opacity: 0;
+      }
+      #end-contact div {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      #end-contact svg {
+        width: 34px;
+        height: 34px;
+      }
+
+      /* ---------- Übergänge ---------- */
+      #flash {
+        z-index: 60;
+        pointer-events: none;
+      }
+      #flash-glow {
+        position: absolute;
+        left: -480px;
+        top: -900px;
+        width: 2880px;
+        height: 2880px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 241, 210, 1) 0%, rgba(240, 205, 135, 0.85) 22%, rgba(212, 175, 106, 0.35) 42%, rgba(212, 175, 106, 0) 62%);
+        mix-blend-mode: screen;
+        opacity: 0;
+      }
+      #flash-fill {
+        position: absolute;
+        inset: 0;
+        background: #fff4dc;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60.5" data-width="1920" data-height="1080" data-fps="30">
+      <div id="stage-bg" class="layer"></div>
+
+      <!-- One-Pager 1: „ganz oben“ -->
+      <div id="op1" class="layer op">
+        <div id="op1-cam" class="op-cam">
+          <div class="op-card">
+            <div class="op-chrome">
+              <div class="op-dot" style="left: 22px"></div>
+              <div class="op-dot" style="left: 44px"></div>
+              <div class="op-dot" style="left: 66px"></div>
+              <div class="op-url">
+                <svg viewBox="0 0 48 48" fill="none" stroke="#8c7756" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="22" width="22" height="17" rx="3" /><path d="M18 22v-5a6 6 0 0 1 12 0v5" /></svg>
+                <div class="bar"></div>
+              </div>
+            </div>
+            <div class="op-view">
+              <div class="op-page">
+                <div class="op-nav-logo"></div>
+                <div class="op-nav-name"></div>
+                <div class="op-nav-item" style="left: 760px"></div>
+                <div class="op-nav-item" style="left: 850px"></div>
+                <div class="op-nav-item" style="left: 940px; width: 48px"></div>
+                <div class="op-hero">
+                  <video id="op1-video" src="assets/aroll.mp4" muted playsinline data-start="5.3" data-duration="3.45" data-media-start="5.3" data-track-index="3"></video>
+                </div>
+                <div class="op-bar" style="left: 56px; top: 664px; width: 420px"></div>
+                <div class="op-bar" style="left: 56px; top: 688px; width: 300px; opacity: 0.6"></div>
+                <div class="op-h" style="top: 760px">Leistungen</div>
+              </div>
+            </div>
+            <svg class="op-outline" viewBox="0 0 1100 760">
+              <path id="op1-ring" d="M72 124H1028A24 24 0 0 1 1052 148V672A24 24 0 0 1 1028 696H72A24 24 0 0 1 48 672V148A24 24 0 0 1 72 124Z" fill="none" stroke="#d4af6a" stroke-width="5" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+            </svg>
+          </div>
+          <svg class="op-leader" viewBox="0 0 1920 1080">
+            <path id="op1-lead" d="M1462 300 C 1490 296, 1510 288, 1536 284" fill="none" stroke="#d4af6a" stroke-width="3" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+          </svg>
+          <div id="op1-tag" class="op-tag">Ganz oben</div>
+        </div>
+      </div>
+
+      <!-- One-Pager 2: nach unten scrollen -->
+      <div id="op2" class="layer op">
+        <div id="op2-cam" class="op-cam">
+          <div class="op-card">
+            <div class="op-chrome">
+              <div class="op-dot" style="left: 22px"></div>
+              <div class="op-dot" style="left: 44px"></div>
+              <div class="op-dot" style="left: 66px"></div>
+              <div class="op-url">
+                <svg viewBox="0 0 48 48" fill="none" stroke="#8c7756" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="22" width="22" height="17" rx="3" /><path d="M18 22v-5a6 6 0 0 1 12 0v5" /></svg>
+                <div class="bar"></div>
+              </div>
+            </div>
+            <div class="op-view">
+              <div id="op2-page" class="op-page">
+                <div class="op-nav-logo"></div>
+                <div class="op-nav-name"></div>
+                <div class="op-nav-item" style="left: 760px"></div>
+                <div class="op-nav-item" style="left: 850px"></div>
+                <div class="op-nav-item" style="left: 940px; width: 48px"></div>
+                <div class="op-hero">
+                  <video id="op2-video" src="assets/aroll.mp4" muted playsinline data-start="46.4" data-duration="2.4" data-media-start="46.4" data-track-index="3"></video>
+                </div>
+                <div class="op-bar" style="left: 56px; top: 664px; width: 420px"></div>
+                <div class="op-bar" style="left: 56px; top: 688px; width: 300px; opacity: 0.6"></div>
+                <div class="op-h" style="top: 760px">Leistungen</div>
+                <div class="op-tile" style="left: 56px; top: 836px">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#a8813f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="13" width="27" height="22" rx="4" /><path d="M32 21l10-6v18l-10-6z" /></svg>
+                  <div class="op-bar" style="top: 104px"></div>
+                </div>
+                <div class="op-tile" style="left: 315px; top: 836px">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#a8813f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="30" rx="4" /><circle cx="17" cy="19" r="3.5" /><path d="M8 35l12-10 7 6 6-5 9 8" /></svg>
+                  <div class="op-bar" style="top: 104px"></div>
+                </div>
+                <div class="op-tile" style="left: 574px; top: 836px">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#a8813f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 7a11 11 0 0 1 6.5 19.9V31h-13v-4.1A11 11 0 0 1 24 7z" /><path d="M19 36h10M20.5 41h7" /></svg>
+                  <div class="op-bar" style="top: 104px"></div>
+                </div>
+                <div class="op-tile" style="left: 833px; top: 836px">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#a8813f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="26" r="15" /><circle cx="22" cy="26" r="8" /><circle cx="22" cy="26" r="1.8" /><path d="M22 26L40 8M33 8h7v7" /></svg>
+                  <div class="op-bar" style="top: 104px"></div>
+                </div>
+                <div class="op-h" style="top: 1090px">Kunden</div>
+                <div class="op-thumb" style="left: 56px; top: 1170px; background-image: url('assets/img/kunde1.jpg')"></div>
+                <div class="op-thumb" style="left: 300px; top: 1170px; background-image: url('assets/img/kunde2.jpg')"></div>
+                <div class="op-bar" style="left: 580px; top: 1200px; width: 380px"></div>
+                <div class="op-bar" style="left: 580px; top: 1230px; width: 300px; opacity: 0.6"></div>
+                <div class="op-bar" style="left: 580px; top: 1260px; width: 340px; opacity: 0.6"></div>
+                <div class="op-footer">
+                  <div class="op-h">Kontakt</div>
+                  <div id="op2-row1" class="op-row" style="top: 150px">
+                    <div class="op-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#17110d" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="36" height="26" rx="4" /><path d="M7 13l17 13 17-13" /></svg></div>
+                    <span>hallo@deine-agentur.de</span>
+                  </div>
+                  <div id="op2-row2" class="op-row" style="top: 220px">
+                    <div class="op-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#17110d" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h6l3 8-4 3a21 21 0 0 0 10 10l3-4 8 3v6a3 3 0 0 1-3 3A31 31 0 0 1 12 10a3 3 0 0 1 3-3z" /></svg></div>
+                    <span>+49 000 000 000</span>
+                  </div>
+                  <div id="op2-row3" class="op-row" style="top: 290px">
+                    <div class="op-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#17110d" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10h28a4 4 0 0 1 4 4v15a4 4 0 0 1-4 4H22l-9 7v-7h-3a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4z" /></svg></div>
+                    <span>WhatsApp</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="op2-scroll" class="op-scroll">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18l12 12 12-12" /></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- A-Roll (Sprecher, mit Ton) -->
+      <div id="aroll-cam">
+        <div id="aroll-fx">
+          <div id="aroll-inv">
+            <video id="aroll" src="assets/aroll.mp4" playsinline data-has-audio="true" data-start="0" data-duration="59.667" data-track-index="0"></video>
+          </div>
+        </div>
+      </div>
+      <div id="aroll-shade" class="layer"></div>
+
+      <!-- Hook: „Willkommen“ hinter dem Sprecher (Matte-Composite nach dem Render) -->
+      <div id="hook" class="clip scene" data-start="0" data-duration="1.2" data-track-index="5">
+        <div id="hook-small" data-layout-allow-overlap>HERZLICH</div>
+        <div id="hook-word"></div>
+      </div>
+
+      <!-- Captions werden per Skript aus CAPS erzeugt -->
+      <div id="captions" class="layer"></div>
+
+      <!-- Kunden-Clips auf den Handflächen (ohne Text, ohne Ton) -->
+      <div id="hands" class="layer">
+        <div id="ccard-r" class="ccard">
+          <div class="ccard-glow"></div>
+          <div class="ccard-frame">
+            <video id="clip1" src="assets/clip1.mp4" muted playsinline data-start="38.3" data-duration="2.3" data-track-index="4"></video>
+            <div class="ccard-sheen"></div>
+          </div>
+        </div>
+        <div id="ccard-l" class="ccard">
+          <div class="ccard-glow"></div>
+          <div class="ccard-frame">
+            <video id="clip2" src="assets/clip2.mp4" muted playsinline data-start="38.56" data-duration="2.04" data-track-index="4"></video>
+            <div class="ccard-sheen"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kontakt (Platzhalter-Daten) -->
+      <div id="sc-contact" class="clip scene" data-start="49.3" data-duration="5.2" data-track-index="6">
+        <div id="g-mail" class="gcard" style="top: 300px">
+          <div class="gico"><svg viewBox="0 0 48 48" fill="none" stroke="#17110d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="36" height="26" rx="4" /><path d="M7 13l17 13 17-13" /></svg></div>
+          <div>
+            <div class="glabel">E-MAIL</div>
+            <div class="gval">hallo@deine-agentur.de</div>
+          </div>
+          <div class="gsheen"></div>
+        </div>
+        <div id="g-tel" class="gcard" style="top: 448px">
+          <div class="gico"><svg viewBox="0 0 48 48" fill="none" stroke="#17110d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h6l3 8-4 3a21 21 0 0 0 10 10l3-4 8 3v6a3 3 0 0 1-3 3A31 31 0 0 1 12 10a3 3 0 0 1 3-3z" /></svg></div>
+          <div>
+            <div class="glabel">TELEFON</div>
+            <div class="gval">+49 000 000 000</div>
+          </div>
+          <div class="gsheen"></div>
+        </div>
+        <div id="chip-tel" class="chip" style="left: 1176px">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h6l3 8-4 3a21 21 0 0 0 10 10l3-4 8 3v6a3 3 0 0 1-3 3A31 31 0 0 1 12 10a3 3 0 0 1 3-3z" /></svg>
+          <span>Telefonisch</span>
+        </div>
+        <div id="chip-wa" class="chip" style="left: 1424px">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10h28a4 4 0 0 1 4 4v15a4 4 0 0 1-4 4H22l-9 7v-7h-3a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4z" /></svg>
+          <span>WhatsApp</span>
+        </div>
+      </div>
+
+      <!-- Statement auf weichgezeichnetem Sprecher B -->
+      <div id="sc-blueprint" class="clip scene" data-start="28.9" data-duration="3.64" data-track-index="6">
+        <div id="bp-vom" data-layout-allow-overlap>vom</div>
+        <div id="bp-blue">Blueprint</div>
+        <svg id="bp-line" viewBox="0 0 1920 1080">
+          <path id="bp-path" d="M366 548 C 560 560, 700 600, 820 628 S 940 650, 990 652" fill="none" stroke="#d4af6a" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+          <circle id="bp-dot" cx="990" cy="652" r="8" fill="#d4af6a" opacity="0" />
+        </svg>
+        <div id="bp-bis" data-layout-allow-overlap>bis zur</div>
+        <div id="bp-um">Umsetzung</div>
+        <div id="bp-sub"><span>von</span> <span>uns</span> <span>alles</span> <span>übernommen.</span></div>
+      </div>
+
+      <!-- Endkarte -->
+      <div id="sc-end" class="clip scene" data-start="56.9" data-duration="3.6" data-track-index="6">
+        <div id="end-bg"></div>
+        <div id="end-small" data-layout-allow-overlap><span>auf</span> <span>eine</span> <span>potenzielle</span></div>
+        <div id="end-word" data-layout-allow-overlap>Zusammenarbeit</div>
+        <div id="end-tail"><span>mit</span> <span>euch.</span></div>
+        <div id="end-rule"></div>
+        <div id="end-contact">
+          <div><svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="36" height="26" rx="4" /><path d="M7 13l17 13 17-13" /></svg><span>hallo@deine-agentur.de</span></div>
+          <div><svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h6l3 8-4 3a21 21 0 0 0 10 10l3-4 8 3v6a3 3 0 0 1-3 3A31 31 0 0 1 12 10a3 3 0 0 1 3-3z" /></svg><span>+49 000 000 000</span></div>
+        </div>
+      </div>
+
+      <!-- Vollbild: „das Allerwichtigste“ -->
+      <div id="sc-allerw" class="clip scene" data-start="8.7" data-duration="2.42" data-track-index="7">
+        <div class="paper-bg"></div>
+        <div id="aw-leaves" class="layer">
+          <div class="leaf" style="left: 900px; top: 40px; transform: rotate(-24deg)"></div>
+          <div class="leaf" style="left: 1100px; top: 300px; transform: rotate(-24deg); opacity: 0.7"></div>
+        </div>
+        <div id="aw-cam" class="aw-cam">
+          <div class="frame-line"></div>
+          <div id="aw-das" data-layout-allow-overlap>das</div>
+          <div id="aw-word"></div>
+          <svg id="aw-line" viewBox="0 0 1920 1080">
+            <path id="aw-path" d="M250 632 C 600 614, 1000 606, 1350 618 S 1600 630, 1660 622" fill="none" stroke="#a8813f" stroke-width="5" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+          </svg>
+          <div id="aw-sub"><span>was</span> <span>du</span> <span>hier</span> <span>zu</span> <span>sehen</span> <span>bekommst.</span></div>
+          <div class="aw-index">01</div>
+        </div>
+        <div class="grain"></div>
+      </div>
+
+      <!-- Vollbild: Leistungen (Icon-Flow) -->
+      <div id="sc-icons" class="clip scene" data-start="20.72" data-duration="8.26" data-track-index="7">
+        <div id="ic-cam" class="ic-cam">
+          <div class="ic-ring" style="left: 560px; top: 120px; width: 800px; height: 800px"></div>
+          <div class="ic-ring" style="left: 360px; top: -80px; width: 1200px; height: 1200px"></div>
+          <div id="ic-head">UNSERE LEISTUNGEN</div>
+          <div id="ic-group">
+            <svg id="ic-links" viewBox="0 0 1920 1080">
+              <path id="ic-l1" d="M574 500 C 610 440, 676 440, 706 500" fill="none" stroke="#d4af6a" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+              <path id="ic-l2" d="M894 500 C 930 560, 996 560, 1026 500" fill="none" stroke="#d4af6a" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+              <path id="ic-l3" d="M1214 500 C 1250 440, 1316 440, 1346 500" fill="none" stroke="#d4af6a" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+            </svg>
+            <div id="ic-t1" class="ic-tile" style="left: 392px">
+              <svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="13" width="27" height="22" rx="4" /><path d="M32 21l10-6v18l-10-6z" /></svg>
+            </div>
+            <div id="ic-t2" class="ic-tile" style="left: 712px">
+              <svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="30" rx="4" /><circle cx="17" cy="19" r="3.5" /><path d="M8 35l12-10 7 6 6-5 9 8" /></svg>
+            </div>
+            <div id="ic-t3" class="ic-tile" style="left: 1032px">
+              <svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 7a11 11 0 0 1 6.5 19.9V31h-13v-4.1A11 11 0 0 1 24 7z" /><path d="M19 36h10M20.5 41h7" /></svg>
+            </div>
+            <div id="ic-t4" class="ic-tile" style="left: 1352px">
+              <svg viewBox="0 0 48 48" fill="none" stroke="#d4af6a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="26" r="15" /><circle cx="22" cy="26" r="8" /><circle cx="22" cy="26" r="1.8" /><path d="M22 26L40 8M33 8h7v7" /></svg>
+            </div>
+            <div id="ic-n1" class="ic-label" style="left: 320px">Produktvideos</div>
+            <div id="ic-n2" class="ic-label" style="left: 640px">Bilder</div>
+            <div id="ic-n3" class="ic-label" style="left: 960px">Konzepte</div>
+            <div id="ic-n4a" class="ic-label" style="left: 1280px">Social-Media-</div>
+            <div id="ic-n4b" class="ic-label" style="left: 1280px; top: 664px">Strategien</div>
+          </div>
+          <svg id="ic-growth" viewBox="0 0 1920 1080">
+            <path id="ic-gpath" d="M300 900 C 640 900, 780 840, 1000 800 S 1400 712, 1590 650" fill="none" stroke="#d4af6a" stroke-width="5" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.02" />
+            <circle id="ic-gdot" cx="1590" cy="650" r="11" fill="#f0d49a" opacity="0" />
+          </svg>
+          <div id="ic-biz"><span>damit</span> <span>euer</span> <span>Business</span></div>
+          <div id="ic-grow">wachsen</div>
+        </div>
+        <div class="grain" style="opacity: 0.1"></div>
+      </div>
+
+      <!-- Licht-Flash -->
+      <div id="flash" class="layer">
+        <div id="flash-glow"></div>
+        <div id="flash-fill"></div>
+      </div>
+
+      <!-- Soundeffekte (mitgelieferte Bibliothek) -->
+      <audio id="sfx-boom-0" src="assets/sfx/impact-bass-1.mp3" data-start="0" data-duration="2.12" data-volume="0.32" data-track-index="9"></audio>
+      <audio id="sfx-wh-shrink1" src="assets/sfx/whoosh.mp3" data-start="5.3" data-duration="0.57" data-volume="0.26" data-track-index="10"></audio>
+      <audio id="sfx-click-oben" src="assets/sfx/click-soft.mp3" data-start="6.12" data-duration="0.37" data-volume="0.35" data-track-index="11"></audio>
+      <audio id="sfx-wh-f1" src="assets/sfx/whoosh-short.mp3" data-start="8.6" data-duration="0.57" data-volume="0.28" data-track-index="10"></audio>
+      <audio id="sfx-boom-1" src="assets/sfx/impact-bass-1.mp3" data-start="8.7" data-duration="2.12" data-volume="0.22" data-track-index="9"></audio>
+      <audio id="sfx-wh-f2" src="assets/sfx/whoosh-short.mp3" data-start="11.02" data-duration="0.57" data-volume="0.24" data-track-index="10"></audio>
+      <audio id="sfx-wh-f3" src="assets/sfx/whoosh-short.mp3" data-start="17.7" data-duration="0.57" data-volume="0.24" data-track-index="10"></audio>
+      <audio id="sfx-wh-f4" src="assets/sfx/whoosh-short.mp3" data-start="20.64" data-duration="0.57" data-volume="0.2" data-track-index="10"></audio>
+      <audio id="sfx-boom-2" src="assets/sfx/impact-bass-1.mp3" data-start="20.72" data-duration="2.12" data-volume="0.26" data-track-index="9"></audio>
+      <audio id="sfx-pop-1" src="assets/sfx/pop.mp3" data-start="20.9" data-duration="0.72" data-volume="0.3" data-track-index="11"></audio>
+      <audio id="sfx-pop-2" src="assets/sfx/pop.mp3" data-start="21.8" data-duration="0.72" data-volume="0.3" data-track-index="11"></audio>
+      <audio id="sfx-pop-3" src="assets/sfx/pop.mp3" data-start="23.14" data-duration="0.72" data-volume="0.3" data-track-index="11"></audio>
+      <audio id="sfx-pop-4" src="assets/sfx/pop.mp3" data-start="24.56" data-duration="0.72" data-volume="0.3" data-track-index="11"></audio>
+      <audio id="sfx-wh-f5" src="assets/sfx/whoosh-short.mp3" data-start="28.86" data-duration="0.57" data-volume="0.24" data-track-index="10"></audio>
+      <audio id="sfx-wh-inv" src="assets/sfx/whoosh.mp3" data-start="32.48" data-duration="0.57" data-volume="0.3" data-track-index="10"></audio>
+      <audio id="sfx-spark-1" src="assets/sfx/sparkle.mp3" data-start="38.34" data-duration="1.8" data-volume="0.26" data-track-index="11"></audio>
+      <audio id="sfx-spark-2" src="assets/sfx/sparkle.mp3" data-start="38.6" data-duration="1.8" data-volume="0.2" data-track-index="12"></audio>
+      <audio id="sfx-wh-cards" src="assets/sfx/whoosh-short.mp3" data-start="40.26" data-duration="0.57" data-volume="0.16" data-track-index="10"></audio>
+      <audio id="sfx-wh-shrink2" src="assets/sfx/whoosh.mp3" data-start="46.36" data-duration="0.57" data-volume="0.26" data-track-index="10"></audio>
+      <audio id="sfx-wh-scroll" src="assets/sfx/whoosh-short.mp3" data-start="47.48" data-duration="0.57" data-volume="0.3" data-track-index="10"></audio>
+      <audio id="sfx-wh-back" src="assets/sfx/whoosh-short.mp3" data-start="48.66" data-duration="0.57" data-volume="0.22" data-track-index="10"></audio>
+      <audio id="sfx-click-mail" src="assets/sfx/click-soft.mp3" data-start="49.42" data-duration="0.37" data-volume="0.35" data-track-index="11"></audio>
+      <audio id="sfx-click-tel" src="assets/sfx/click-soft.mp3" data-start="50.66" data-duration="0.37" data-volume="0.35" data-track-index="11"></audio>
+      <audio id="sfx-pop-chip1" src="assets/sfx/pop.mp3" data-start="52.34" data-duration="0.72" data-volume="0.26" data-track-index="11"></audio>
+      <audio id="sfx-pop-chip2" src="assets/sfx/pop.mp3" data-start="53.44" data-duration="0.72" data-volume="0.26" data-track-index="11"></audio>
+      <audio id="sfx-chime-end" src="assets/sfx/chime.mp3" data-start="58.4" data-duration="2.1" data-volume="0.2" data-track-index="11"></audio>
+    </div>
+
+    <script>
+      Promise.all([
+        document.fonts.load('600 34px "Manrope"'),
+        document.fonts.load('800 80px "Manrope"'),
+        document.fonts.load('italic 400 108px "Instrument Serif"'),
+      ])
+        .catch(() => {})
+        .then(function () {
+        const tl = gsap.timeline({ paused: true });
+        const LEAD = 0.05; // Elemente starten knapp vor dem Wort
+        const q = (s) => document.querySelector(s);
+        const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+        const easeOutExpo = (x) => (x >= 1 ? 1 : 1 - Math.pow(2, -10 * x));
+        const easeInOut = (x) => 0.5 - 0.5 * Math.cos(Math.PI * clamp(x));
+        const easeIn = (x) => x * x;
+
+        function wIn(el, t, o = {}) {
+          tl.fromTo(
+            el,
+            { opacity: 0, y: o.y ?? 16, filter: `blur(${o.blur ?? 10}px)` },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: o.d ?? 0.34, ease: o.ease ?? "expo.out", immediateRender: false },
+            Math.max(0, t - LEAD),
+          );
+        }
+        function gOut(el, t, d = 0.18) {
+          tl.fromTo(el, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: d, ease: "power2.in", immediateRender: false }, t);
+        }
+        function show(el, t, d = 0.4, from = {}, to = {}) {
+          tl.fromTo(el, { opacity: 0, ...from }, { opacity: 1, duration: d, ease: "expo.out", immediateRender: false, ...to }, t);
+        }
+        function draw(el, t, d = 0.5, ease = "power2.inOut") {
+          tl.fromTo(el, { strokeDashoffset: 1.02 }, { strokeDashoffset: 0, duration: d, ease, immediateRender: false }, t);
+        }
+
+        // ---------- Kamera (Punch-ins um den Kopf, nie ganz still) ----------
+        const HEAD_A = [950, 228];
+        const HEAD_B = [1046, 305];
+        const cam = q("#aroll-cam");
+        let camState = { x: 0, y: 0, scale: 1, borderRadius: 0 };
+        function camTo(t, s, head, d = 0.2, ease = "power2.out") {
+          const to = { scale: s, x: head[0] * (1 - s), y: head[1] * (1 - s), borderRadius: 0 };
+          tl.fromTo(cam, { ...camState }, { ...to, duration: d, ease, immediateRender: false }, t);
+          camState = to;
+        }
+        function camDrift(t0, t1, s1, head) {
+          const to = { scale: s1, x: head[0] * (1 - s1), y: head[1] * (1 - s1), borderRadius: 0 };
+          tl.fromTo(cam, { ...camState }, { ...to, duration: t1 - t0, ease: "none", immediateRender: false }, t0);
+          camState = to;
+        }
+        function camSet(t, s, head) {
+          const to = { scale: s, x: head[0] * (1 - s), y: head[1] * (1 - s), borderRadius: 0 };
+          tl.fromTo(cam, { ...camState }, { ...to, duration: 0.001, ease: "none", immediateRender: false }, t);
+          camState = to;
+        }
+        // In den Hero-Slot des One-Pagers schrumpfen
+        const SLOT = { x: 466, y: 292, scale: 988 / 1920, borderRadius: 18 / (988 / 1920) };
+        function camToSlot(t, d) {
+          tl.fromTo(cam, { ...camState }, { ...SLOT, duration: d, ease: "power3.inOut", immediateRender: false }, t);
+          camState = { ...SLOT };
+        }
+        function camVis(t, v) {
+          tl.fromTo(cam, { opacity: v ? 0 : 1 }, { opacity: v ? 1 : 0, duration: 0.001, immediateRender: false }, t);
+        }
+
+        camDrift(1.1, 4.06, 1.02, HEAD_A);
+        camTo(4.08, 1.15, HEAD_A);
+        camDrift(4.3, 5.3, 1.165, HEAD_A);
+        camToSlot(5.34, 0.55);
+        camVis(5.92, false);
+        camSet(11.06, 1.0, HEAD_A);
+        camVis(11.08, true);
+        camDrift(11.1, 13.3, 1.02, HEAD_A);
+        camTo(13.32, 1.18, HEAD_A);
+        camDrift(13.52, 16.18, 1.2, HEAD_A);
+        camTo(16.2, 1.07, HEAD_A);
+        camDrift(16.4, 17.76, 1.08, HEAD_A);
+        camSet(17.767, 1.0, HEAD_B);
+        camDrift(17.77, 19.38, 1.02, HEAD_B);
+        camTo(19.4, 1.12, HEAD_B);
+        camDrift(19.6, 20.72, 1.13, HEAD_B);
+        camSet(28.9, 1.0, HEAD_B);
+        camDrift(28.92, 32.52, 1.06, HEAD_B);
+        camSet(32.5333, 1.0, HEAD_A);
+        camDrift(32.54, 33.3, 1.015, HEAD_A);
+        camTo(33.32, 1.15, HEAD_A);
+        camDrift(33.52, 35.78, 1.17, HEAD_A);
+        camTo(35.8, 1.0, HEAD_A, 0.22, "power2.inOut");
+        // 36.0 – 40.6: exakt 1.0 (Hand-Tracking der Kunden-Karten)
+        camDrift(40.62, 42.2, 1.02, HEAD_A);
+        camTo(42.22, 1.16, HEAD_A);
+        camDrift(42.42, 44.14, 1.18, HEAD_A);
+        camTo(44.16, 1.06, HEAD_A);
+        camDrift(44.36, 46.36, 1.08, HEAD_A);
+        camToSlot(46.38, 0.52);
+        camVis(46.95, false);
+        camSet(48.68, 1.0, HEAD_A);
+        camVis(48.7, true);
+        camDrift(48.72, 54.36, 1.05, HEAD_A);
+        camTo(54.38, 1.12, HEAD_A);
+        camDrift(54.58, 60.4, 1.2, HEAD_A);
+
+        // ---------- A-Roll-Filter: Weichzeichnen, Invert ----------
+        const fx = q("#aroll-fx");
+        tl.fromTo(fx, { filter: "blur(0px) brightness(1)" }, { filter: "blur(16px) brightness(0.55)", duration: 0.26, ease: "power2.out", immediateRender: false }, 28.9);
+        tl.fromTo(fx, { filter: "blur(16px) brightness(0.55)" }, { filter: "blur(0px) brightness(1)", duration: 0.001, immediateRender: false }, 32.5333);
+        tl.fromTo(fx, { filter: "blur(0px) brightness(1)" }, { filter: "blur(22px) brightness(1)", duration: 0.001, immediateRender: false }, 48.7);
+        tl.fromTo(fx, { filter: "blur(22px) brightness(1)" }, { filter: "blur(0px) brightness(1)", duration: 0.36, ease: "expo.out", immediateRender: false }, 48.71);
+        tl.fromTo(fx, { filter: "blur(0px) brightness(1)" }, { filter: "blur(18px) brightness(0.5)", duration: 0.7, ease: "power2.inOut", immediateRender: false }, 56.9);
+        const inv = q("#aroll-inv");
+        tl.fromTo(inv, { filter: "invert(0)" }, { filter: "invert(1)", duration: 0.001, immediateRender: false }, 32.5333);
+        tl.fromTo(inv, { filter: "invert(1)" }, { filter: "invert(0)", duration: 0.001, immediateRender: false }, 32.6);
+        const shade = q("#aroll-shade");
+        tl.fromTo(shade, { opacity: 0 }, { opacity: 0.62, duration: 0.3, ease: "power2.out", immediateRender: false }, 28.9);
+        tl.fromTo(shade, { opacity: 0.62 }, { opacity: 0, duration: 0.001, immediateRender: false }, 32.5333);
+        tl.fromTo(shade, { opacity: 0 }, { opacity: 0.66, duration: 0.7, ease: "power2.inOut", immediateRender: false }, 56.9);
+
+        // ---------- Licht-Flash in Gold (Peak genau auf dem Schnitt) ----------
+        const glow = q("#flash-glow");
+        const fill = q("#flash-fill");
+        function flash(T, ox, oy) {
+          tl.fromTo(glow, { opacity: 0, scale: 0.45, x: ox, y: oy }, { opacity: 1, scale: 1.05, duration: 0.14, ease: "power2.in", immediateRender: false }, T - 0.14);
+          tl.fromTo(glow, { opacity: 1, scale: 1.05, x: ox, y: oy }, { opacity: 0, scale: 1.5, duration: 0.3, ease: "power2.out", immediateRender: false }, T);
+          tl.fromTo(fill, { opacity: 0 }, { opacity: 0.88, duration: 0.07, ease: "power1.in", immediateRender: false }, T - 0.07);
+          tl.fromTo(fill, { opacity: 0.88 }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, T);
+        }
+        flash(8.7, -1300, 0);
+        flash(11.1, 1300, -200);
+        flash(17.767, 1200, 300);
+        flash(20.72, -1200, -300);
+        flash(28.9, 0, 900);
+
+        // ---------- Hook ----------
+        const hookWord = q("#hook-word");
+        "Willkommen".split("").forEach((ch, i) => {
+          const s = document.createElement("span");
+          s.textContent = ch;
+          hookWord.appendChild(s);
+        });
+        tl.fromTo("#hook-small", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out", immediateRender: false }, 0);
+        hookWord.querySelectorAll("span").forEach((s, i) => {
+          tl.fromTo(s, { opacity: i === 0 ? 0.35 : 0, y: 34, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.36, ease: "expo.out", immediateRender: false }, 0.0 + i * 0.035);
+        });
+        tl.fromTo("#hook-word", { scale: 1 }, { scale: 1.035, duration: 1.0, ease: "none", immediateRender: false }, 0);
+        tl.fromTo(["#hook-small", "#hook-word"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(12px)", duration: 0.16, ease: "power2.in", immediateRender: false }, 0.92);
+
+        // ---------- Captions ----------
+        // zone: AR/AL (Sprecher A rechts/links), BR/BL (Sprecher B); row = Zeile im Raster
+        const CAPS = [
+          { zone: "AR", out: 2.8, lines: [{ row: 1, cls: "s", w: [["auf", 1.52], ["unserem", 1.6]] }, { row: 2, cls: "b", w: [["One-Pager", 1.94]] }] },
+          { zone: "AL", out: 5.22, lines: [{ row: 1, cls: "s", out: 4.36, w: [["näher", 3.44], ["an", 3.76], ["deinem", 3.94]] }, { row: 2, cls: "b serif", w: [["Erfolg", 4.16]] }, { row: 3, cls: "s", w: [["auf", 4.4], ["Social", 4.56], ["Media", 4.9]] }] },
+          { zone: "AL", out: 12.74, lines: [{ row: 1, cls: "s", w: [["Hier", 11.1], ["stellen", 11.28]] }, { row: 2, cls: "b", w: [["wir", 11.48], ["uns", 11.7], ["vor", 12.2]] }] },
+          { zone: "AR", out: 14.24, lines: [{ row: 1, cls: "s", w: [["das,", 12.86], ["was", 12.98], ["wir", 13.16]] }, { row: 2, cls: "b", w: [["machen", 13.4]] }] },
+          { zone: "AL", out: 16.2, lines: [{ row: 1, cls: "s", w: [["von", 14.84], ["uns", 15.02]] }, { row: 2, cls: "b", w: [["erwarten", 15.3]] }, { row: 3, cls: "s", w: [["kannst", 15.8]] }] },
+          { zone: "AR", dy: 70, out: 17.66, lines: [{ row: 1, cls: "s", w: [["für", 16.06], ["eine", 16.26], ["potenzielle", 16.48]] }, { row: 2, cls: "b serif", w: [["Zusammenarbeit", 17.04]] }] },
+          { zone: "BR", out: 19.36, lines: [{ row: 1, cls: "s", w: [["Bei", 17.86], ["unseren", 18.0]] }, { row: 2, cls: "b", w: [["Leistungen", 18.26]] }] },
+          { zone: "BL", out: 20.62, lines: [{ row: 1, cls: "s", w: [["breit", 19.56], ["gefächertes", 19.76]] }, { row: 2, cls: "b serif", w: [["Spektrum", 20.14]] }] },
+          { zone: "AR", out: 34.0, lines: [{ row: 1, cls: "s", w: [["ein", 32.84], ["sehr", 33.04]] }, { row: 2, cls: "b", w: [["junges", 33.38], ["Team", 33.74]] }] },
+          { zone: "AL", out: 35.78, lines: [{ row: 1, cls: "s", w: [["mit", 33.92], ["viel", 34.12], ["Social-Media-", 34.4]] }, { row: 2, cls: "b serif", w: [["Know-how", 35.04]] }] },
+          { zone: "AR", out: 38.14, lines: [{ row: 1, cls: "s", w: [["mit", 36.36], ["diversen", 36.6]] }, { row: 2, cls: "b", w: [["Kunden", 37.1]] }] },
+          { zone: "AL", out: 43.0, lines: [{ row: 1, cls: "s", w: [["schon", 41.46], ["mehrere", 41.72], ["Kunden", 42.0]] }, { row: 2, cls: "b", w: [["erfolgreich", 42.3]] }] },
+          { zone: "AR", out: 44.12, lines: [{ row: 1, cls: "s", w: [["an", 43.02], ["ihre", 43.26]] }, { row: 2, cls: "b serif", w: [["Ziele", 43.48]] }, { row: 3, cls: "s", w: [["gebracht.", 43.7]] }] },
+          { zone: "AL", out: 46.3, lines: [{ row: 1, cls: "s", w: [["Teil", 44.78], ["dieses", 44.88]] }, { row: 2, cls: "b serif", w: [["Erfolgs", 45.2]] }] },
+          { zone: "AR", out: 56.8, lines: [{ row: 1, cls: "s", out: 55.2, w: [["Wir", 54.4], ["freuen", 54.82], ["uns", 55.04]] }, { row: 1, cls: "s", w: [["auf", 55.24], ["eure", 55.36]] }, { row: 2, cls: "b", w: [["Kontaktaufnahme", 55.68]] }] },
+        ];
+        const capRoot = q("#captions");
+        CAPS.forEach((c, ci) => {
+          const box = document.createElement("div");
+          box.className = "cap " + c.zone;
+          box.id = "cap-" + ci;
+          if (c.dy) box.style.marginTop = c.dy + "px";
+          c.lines.forEach((ln, li) => {
+            const d = document.createElement("div");
+            d.className = "ln " + ln.cls;
+            d.style.gridRow = String(ln.row);
+            d.style.gridColumn = "1";
+            ln.w.forEach(([word], wi) => {
+              const s = document.createElement("span");
+              s.className = "w";
+              s.textContent = word;
+              d.appendChild(s);
+              if (wi < ln.w.length - 1) d.appendChild(document.createTextNode(" "));
+            });
+            box.appendChild(d);
+            ln.el = d;
+          });
+          capRoot.appendChild(box);
+          // Lange Wörter auf die Breite der Zone einpassen
+          const maxW = { AL: 425, AR: 690, BL: 460, BR: 500 }[c.zone];
+          c.lines.forEach((ln) => {
+            const w = ln.el.offsetWidth;
+            if (w > maxW) ln.el.style.fontSize = ((parseFloat(getComputedStyle(ln.el).fontSize) * maxW) / w).toFixed(1) + "px";
+          });
+          c.lines.forEach((ln) => {
+            ln.el.querySelectorAll(".w").forEach((s, wi) => {
+              const big = ln.cls.indexOf("b") === 0;
+              wIn(s, ln.w[wi][1], big ? { y: 22, blur: 14, d: 0.38 } : {});
+            });
+            if (ln.out) gOut(ln.el, ln.out, 0.16);
+          });
+          gOut(box, c.out);
+        });
+
+        // ---------- One-Pager 1 (5.3 – 8.75) ----------
+        const op1 = q("#op1");
+        tl.fromTo("#stage-bg", { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, 5.3);
+        tl.fromTo(op1, { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power2.out", immediateRender: false }, 5.4);
+        tl.fromTo("#op1-cam", { scale: 1.035 }, { scale: 1, duration: 0.5, ease: "power3.out", immediateRender: false }, 5.36);
+        tl.fromTo("#op1-cam", { scale: 1 }, { scale: 1.035, duration: 2.8, ease: "none", immediateRender: false }, 5.92);
+        draw("#op1-ring", 6.1, 0.55, "power2.inOut");
+        draw("#op1-lead", 6.36, 0.25, "power2.out");
+        show("#op1-tag", 6.5, 0.35, { x: -16, filter: "blur(8px)" }, { x: 0, filter: "blur(0px)" });
+        tl.fromTo(op1, { opacity: 1 }, { opacity: 0, duration: 0.001, immediateRender: false }, 8.75);
+        tl.fromTo("#stage-bg", { opacity: 1 }, { opacity: 0, duration: 0.001, immediateRender: false }, 11.08);
+
+        // ---------- Vollbild „Allerwichtigste“ (8.7 – 11.12) ----------
+        const awWord = q("#aw-word");
+        "Allerwichtigste".split("").forEach((ch) => {
+          const s = document.createElement("span");
+          s.textContent = ch;
+          awWord.appendChild(s);
+        });
+        tl.fromTo("#aw-cam", { scale: 1 }, { scale: 1.05, duration: 2.42, ease: "none", immediateRender: false }, 8.7);
+        tl.fromTo("#aw-leaves", { x: 0 }, { x: -60, duration: 2.42, ease: "none", immediateRender: false }, 8.7);
+        wIn("#aw-das", 8.76, { y: 12 });
+        awWord.querySelectorAll("span").forEach((s, i) => {
+          tl.fromTo(s, { opacity: 0, y: 40, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.42, ease: "expo.out", immediateRender: false }, 8.86 + i * 0.03);
+        });
+        draw("#aw-path", 9.46, 0.55, "power2.inOut");
+        q("#aw-sub").querySelectorAll("span").forEach((s, i) => wIn(s, [9.82, 9.96, 10.12, 10.28, 10.5, 10.66][i]));
+
+        // ---------- Sprecher A → B (17.767), Leistungen-Flow (20.72 – 28.98) ----------
+        tl.fromTo("#ic-cam", { scale: 1 }, { scale: 1.04, duration: 8.26, ease: "none", immediateRender: false }, 20.72);
+        show("#ic-head", 20.74, 0.5, { y: -14, filter: "blur(8px)" }, { y: 0, filter: "blur(0px)" });
+        const tiles = [
+          ["#ic-t1", "#ic-n1", 20.94],
+          ["#ic-t2", "#ic-n2", 21.84],
+          ["#ic-t3", "#ic-n3", 23.18],
+          ["#ic-t4", null, 24.6],
+        ];
+        tiles.forEach(([t, n, at]) => {
+          tl.fromTo(t, { opacity: 0, scale: 0.6, y: 26, filter: "blur(12px)" }, { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", duration: 0.46, ease: "expo.out", immediateRender: false }, at - LEAD);
+          if (n) wIn(n, at + 0.04, { y: 14 });
+        });
+        wIn("#ic-n4a", 25.6, { y: 14 });
+        wIn("#ic-n4b", 26.18, { y: 14 });
+        draw("#ic-l1", 21.62, 0.36, "power2.out");
+        draw("#ic-l2", 22.96, 0.36, "power2.out");
+        draw("#ic-l3", 24.38, 0.36, "power2.out");
+        // Phase 2: wachsen
+        tl.fromTo("#ic-group", { y: 0, scale: 1, opacity: 1 }, { y: -250, scale: 0.8, opacity: 0.38, duration: 0.7, ease: "power3.inOut", immediateRender: false }, 26.8);
+        tl.fromTo("#ic-head", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power2.in", immediateRender: false }, 26.8);
+        q("#ic-biz").querySelectorAll("span").forEach((s, i) => wIn(s, [26.82, 26.96, 27.22][i]));
+        draw("#ic-gpath", 27.2, 1.2, "power2.inOut");
+        tl.fromTo("#ic-gdot", { opacity: 0, scale: 0.2, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out", immediateRender: false }, 28.36);
+        tl.fromTo("#ic-grow", { opacity: 0, y: 30, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out", immediateRender: false }, 28.34);
+
+        // ---------- Statement Blueprint (28.9 – 32.54) ----------
+        wIn("#bp-vom", 29.38, { y: 12 });
+        tl.fromTo("#bp-blue", { opacity: 0, y: 26, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out", immediateRender: false }, 29.52);
+        draw("#bp-path", 30.0, 0.8, "power2.inOut");
+        wIn("#bp-bis", 30.02, { y: 12 });
+        tl.fromTo("#bp-dot", { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, 30.78);
+        tl.fromTo("#bp-um", { opacity: 0, y: 30, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out", immediateRender: false }, 30.82);
+        q("#bp-sub").querySelectorAll("span").forEach((s, i) => wIn(s, [31.66, 31.76, 31.98, 32.18][i]));
+        tl.fromTo(["#bp-vom", "#bp-blue", "#bp-bis", "#bp-um", "#bp-sub", "#bp-line"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.1, ease: "power2.in", immediateRender: false }, 32.43);
+
+        // ---------- Kunden-Karten auf den Handflächen (38.3 – 40.62) ----------
+        const TRACK_R = [[38.3, 1250, 643], [38.3333, 1272, 608], [38.3667, 1300, 569], [38.4, 1327, 531], [38.4333, 1353, 498], [38.4667, 1379, 470], [38.5, 1401, 450], [38.5333, 1419, 442], [38.5667, 1434, 438], [38.6, 1447, 438], [38.6333, 1455, 440], [38.6667, 1461, 442], [38.7, 1465, 446], [38.7333, 1470, 452], [38.7667, 1472, 456], [38.8, 1474, 462], [38.8333, 1475, 468], [38.8667, 1475, 473], [38.9, 1474, 477], [38.9333, 1470, 481], [38.9667, 1466, 482], [39.0, 1457, 482]];
+        const TRACK_L = [[38.5333, 905, 839], [38.6, 854, 712], [38.6667, 760, 588], [38.7, 729, 587], [38.7333, 687, 556], [38.7667, 663, 523], [38.8, 639, 494], [38.8333, 619, 471], [38.8667, 607, 455], [38.9, 599, 445], [38.9333, 596, 439], [38.9667, 597, 436], [39.0, 603, 437]];
+        function track(tab, t) {
+          if (t <= tab[0][0]) return [tab[0][1], tab[0][2]];
+          for (let i = 1; i < tab.length; i++) {
+            if (t <= tab[i][0]) {
+              const a = tab[i - 1], b = tab[i];
+              const k = (t - a[0]) / (b[0] - a[0]);
+              return [a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+            }
+          }
+          const z = tab[tab.length - 1];
+          return [z[1], z[2]];
+        }
+        // Zustand pro Frame vorberechnen (rein zeitbasiert) und als Keyframes ablegen
+        function cardDriver(sel, tab, cfg) {
+          const el = q(sel);
+          const T0 = 38.28, T1 = 40.64, F = 1 / 30;
+          const card = [], glowK = [], sheenK = [];
+          for (let i = 0; T0 + i * F <= T1 + 1e-6; i++) {
+            const t = T0 + i * F;
+            let [px, py] = track(tab, Math.min(t, cfg.detach));
+            py += cfg.dy;
+            if (t > cfg.detach) {
+              const k = easeInOut((t - cfg.detach) / 1.5);
+              px += cfg.driftX * k;
+              py -= 16 * k;
+            }
+            const sp = clamp((t - cfg.spawn) / 0.34);
+            const ex = clamp((t - cfg.exit) / 0.26);
+            const d = i === 0 ? 0 : F;
+            card.push({
+              x: +(px - 132).toFixed(2),
+              y: +(py - 165).toFixed(2),
+              rotation: +(cfg.rot0 + (cfg.rot1 - cfg.rot0) * easeOutExpo(clamp((t - cfg.spawn) / 0.6))).toFixed(3),
+              scale: +((0.16 + 0.84 * easeOutExpo(sp)) * (1 - 0.1 * easeIn(ex))).toFixed(4),
+              opacity: +(clamp((t - cfg.spawn) / 0.1) * (1 - ex)).toFixed(3),
+              filter: `blur(${(9 * (1 - clamp((t - cfg.spawn) / 0.26)) + 12 * ex).toFixed(2)}px)`,
+              duration: d,
+              ease: "none",
+            });
+            const g = Math.sin(Math.PI * clamp((t - cfg.spawn) / 0.55));
+            glowK.push({ opacity: +(Math.max(g * 0.95, 0.32 * clamp((t - cfg.spawn) / 0.3)) * (1 - ex)).toFixed(3), duration: d, ease: "none" });
+            sheenK.push({ xPercent: +(clamp((t - cfg.spawn - 0.3) / 0.7) * 380).toFixed(1), duration: d, ease: "none" });
+          }
+          tl.to(el, { keyframes: card, immediateRender: false }, T0);
+          tl.to(el.querySelector(".ccard-glow"), { keyframes: glowK, immediateRender: false }, T0);
+          tl.to(el.querySelector(".ccard-sheen"), { keyframes: sheenK, immediateRender: false }, T0);
+        }
+        cardDriver("#ccard-r", TRACK_R, { spawn: 38.36, detach: 38.93, exit: 40.3, dy: -24, driftX: 8, rot0: 9, rot1: 4 });
+        cardDriver("#ccard-l", TRACK_L, { spawn: 38.62, detach: 38.95, exit: 40.34, dy: -24, driftX: -8, rot0: -9, rot1: -4 });
+
+        // ---------- One-Pager 2: nach ganz unten scrollen (46.38 – 48.75) ----------
+        const op2 = q("#op2");
+        tl.fromTo("#stage-bg", { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, 46.36);
+        tl.fromTo(op2, { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power2.out", immediateRender: false }, 46.44);
+        tl.fromTo("#op2-cam", { scale: 1.035 }, { scale: 1, duration: 0.5, ease: "power3.out", immediateRender: false }, 46.4);
+        show("#op2-scroll", 47.2, 0.3, { y: -10 }, { y: 0 });
+        tl.fromTo("#op2-scroll svg", { y: -4 }, { y: 6, duration: 0.3, ease: "sine.inOut", repeat: 3, yoyo: true, immediateRender: false }, 47.4);
+        tl.fromTo("#op2-page", { y: 0 }, { y: -1192, duration: 0.95, ease: "power3.inOut", immediateRender: false }, 47.5);
+        ["#op2-row1", "#op2-row2", "#op2-row3"].forEach((r, i) => {
+          tl.fromTo(r, { x: -12, opacity: 0.4 }, { x: 0, opacity: 1, duration: 0.35, ease: "expo.out", immediateRender: false }, 48.2 + i * 0.08);
+        });
+        tl.fromTo(op2, { opacity: 1 }, { opacity: 0, duration: 0.14, immediateRender: false }, 48.7);
+        tl.fromTo("#stage-bg", { opacity: 1 }, { opacity: 0, duration: 0.001, immediateRender: false }, 48.86);
+
+        // ---------- Kontakt-Karten (49.3 – 54.5) ----------
+        function cardIn(sel, t) {
+          tl.fromTo(sel, { opacity: 0, x: 46, scale: 0.97, filter: "blur(12px)" }, { opacity: 1, x: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out", immediateRender: false }, t - LEAD);
+          tl.fromTo(sel + " .gsheen", { x: 0 }, { x: 1100, duration: 0.9, ease: "power2.inOut", immediateRender: false }, t + 0.2);
+        }
+        cardIn("#g-mail", 49.5);
+        cardIn("#g-tel", 50.72);
+        tl.fromTo("#chip-tel", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out", immediateRender: false }, 52.4 - LEAD);
+        tl.fromTo("#chip-wa", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out", immediateRender: false }, 53.5 - LEAD);
+        ["#g-mail", "#g-tel", "#chip-tel", "#chip-wa"].forEach((s, i) => {
+          tl.fromTo(s, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in", immediateRender: false }, 54.26 + i * 0.04);
+        });
+
+        // ---------- Endkarte (56.9 – 60.5) ----------
+        q("#end-small").querySelectorAll("span").forEach((s, i) => wIn(s, [57.62, 57.7, 57.98][i]));
+        tl.fromTo("#end-word", { opacity: 0, y: 34, filter: "blur(18px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out", immediateRender: false }, 58.44);
+        tl.fromTo("#end-word", { scale: 1 }, { scale: 1.03, duration: 2.0, ease: "none", immediateRender: false }, 58.5);
+        q("#end-tail").querySelectorAll("span").forEach((s, i) => wIn(s, [58.98, 59.16][i]));
+        tl.fromTo("#end-rule", { scaleX: 0, opacity: 1 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "power3.inOut", immediateRender: false }, 59.3);
+        show("#end-contact", 59.5, 0.5, { y: 14, filter: "blur(8px)" }, { y: 0, filter: "blur(0px)" });
+        tl.fromTo("#end-bg", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 59.0);
+
+        window.__timelines["main"] = tl;
+        if (window.__hfForceTimelineRebind) window.__hfForceTimelineRebind();
+      });
+    </script>
+  </body>
+</html>
