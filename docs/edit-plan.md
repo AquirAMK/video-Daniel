@@ -94,3 +94,11 @@ Ergebnis: ca. **58–60 s** statt 1:09.
   Plan (helles Papier); auf Wunsch umstellbar.
 - **Vorschau v1:** 60,5 s, −14,6 LUFS, Spitzenpegel −1,4 dBTP. Master `renders/welcomer_vorschau_v1.mp4`,
   komprimierte Kopie `_web.mp4` (< 30 MB) für den Versand.
+
+## Final (v8, vom Nutzer freigegeben)
+
+- Master: `videos/welcomer-video/renders/welcomer_final_1080p.mp4` (1920 × 1080, 30 fps, H.264 CRF 16, AAC 256k,
+  −14,1 LUFS, True Peak −1,7 dBTP, 60,5 s). Web-Kopie < 30 MB: `welcomer_final_web.mp4`.
+- Pipeline: `edit/make_edl.py` → `edit/cut_segments.sh` (A-Roll) · `edit/make_bgm.py` (Musikbett) ·
+  `edit/make_card_sfx.py` (Karten-Pops) · HyperFrames-Render · `edit/finish.sh` (Freisteller + Mastering).
+- Musik „Family Affair“: kommerzieller Song, vor der Veröffentlichung auf der Website Lizenz klären.
