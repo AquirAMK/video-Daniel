@@ -65,6 +65,8 @@ Ergebnis: ca. **58–60 s** statt 1:09.
 ## Umsetzung (Stand v1, abgenommen mit: Gold ok, kein Wasserzeichen, kein Text bei den Kunden-Clips)
 
 - **Rohschnitt:** 59,7 s (`edit/make_edl.py` → `edit/cut_segments.sh`), Zeitachse unten = Ausgabe-Zeit.
+  Ton-Retusche (v6): Am „quasi“-Schnitt (14,833 s) war der Anfang „K“ noch hörbar → `edit/fix_quasi_k.py` blendet
+  nur den Ton 14,735–14,833 s aus (Bild und Länge unverändert, damit Captions/Grafiken/Beat-Sync nicht verrutschen).
 - **Projekt:** `videos/welcomer-video/` (HyperFrames), Nachbearbeitung `edit/finish.sh`.
 - **Kunden-Clips:** Karten sitzen auf den Handflächen (Hand-Tracking per MediaPipe), rechts Clip 1 ab 0:00,
   links Clip 2 ab 0:16, sichtbar ca. 38,4–40,6 s, stumm, Clip 1 auf 4:5 beschnitten (eingebrannte
