@@ -21,6 +21,11 @@ segs, cur = [], START
 for a, b in cuts:
     segs.append((snap(cur), snap(a))); cur = b
 segs.append((snap(cur), snap(END)))
+# „quasi“: Das K setzt schon bei 17,465 ein („du“ endet 17,43). Das Segment davor wird um 2 Frames
+# in der Quelle verschoben (Slip): Ende 17,4667 statt 17,5333, Start 16,4000 statt 16,4667 (Sprechpause).
+# Gleiche Länge -> alle Zeiten davor und danach bleiben unverändert.
+SLIP_FRAMES = {(snap(16.48), snap(17.55)): -2}
+segs = [(s + SLIP_FRAMES.get((s, e), 0) / FPS, e + SLIP_FRAMES.get((s, e), 0) / FPS) for s, e in segs]
 # Bildwechsel A→B liegt bei 20,967: Segmentgrenze muss davor enden / danach starten
 out, t = [], 0.0
 for s, e in segs:
