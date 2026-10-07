@@ -35,6 +35,10 @@ raw = subprocess.run(["ffmpeg", "-v", "error", "-i", pop_src, "-ac", "1", "-ar",
                      capture_output=True, check=True).stdout
 pop = np.frombuffer(raw, dtype=np.float32).copy()
 pop = sosfilt(butter(2, 4500, "lp", fs=SR, output="sos"), pop)
+# Die Bibliotheks-Datei hat ~0,117 s leisen Vorlauf (Rauschen) vor dem eigentlichen Pop:
+# abschneiden, damit data-start = hörbarer Pop (5 ms Luft vor dem Transienten)
+onset = int(np.argmax(np.abs(pop) > np.abs(pop).max() * 0.1))
+pop = pop[max(0, onset - int(0.005 * SR)):]
 pop[: int(0.004 * SR)] *= raised(int(0.004 * SR))
 pop = pop[: int(0.45 * SR)]
 pop[-int(0.08 * SR):] *= raised(int(0.08 * SR))[::-1]
