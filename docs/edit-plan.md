@@ -74,11 +74,14 @@ Ergebnis: ca. **58–60 s** statt 1:09.
 - **Kontaktdaten:** `bremen.bites@gmail.com`, `0160 7913817` (in `index.html` an je 3 Stellen: One-Pager, Glas-Karten, Endkarte).
 - **Musik:** „Family Affair“ (Instrumental), vom Nutzer nachgeliefert. Tempo 92,9 BPM (Takt 2,5835 s), 8-Takt-Phrasen.
   Schnitt (`edit/make_bgm.py`): Video 0–46,503 s = Song-Takte 6–23, danach Song-Outro (Takte 96–101), Schlussschlag 59,421 s.
-  Mix: Voiceover-Carve (Stärke 0,8) gegen die Stimme, Bett-Pegel 0,226 (v4: „etwas zurückhaltender“), Hand-Stufe „Akzente Start/Schluss“.
+  Mix: Voiceover-Carve (Stärke 0,8) gegen die Stimme, Bett-Pegel 0,16 (v4/v5: je −3 dB auf Wunsch), Hand-Stufe „Akzente Start/Schluss“.
 - **Übergänge auf dem Beat-Raster:** One-Pager 5,167 (Downbeat) · Allerwichtigste 8,396–10,98 (genau ein Takt) ·
   Leistungen 20,668 (Phrasenbeginn) · Blueprint 29,065 · One-Pager 2 46,503 (Downbeat = Musik-Sprung) ·
   Endkarte 56,838 (Downbeat) · Goldlinie 59,41 mit dem Schlussschlag. Sprecherschnitte 17,767 und 32,533 liegen auf Achteln.
-- **SFX:** v3 −7 dB, v4 nochmals −3,5 dB; Bass-Booms und Schluss-Chime entfernt; Kunden-Karten: weicher „Ding“ (Gis5/Cis6) statt Sparkle.
+- **SFX:** v3 −7 dB, v4 nochmals −3,5 dB; Bass-Booms und Schluss-Chime entfernt.
+- **Kunden-Karten (v5):** weicher Pop (Variante A aus der Hörprobe, `edit/make_card_sfx.py`), zweimal und klar getrennt:
+  rechte Karte 38,39 s / Pop 38,43 (Achtel, rechts), linke Karte 38,71 s / Pop 38,75 (Downbeat, links, einen Ganzton höher).
+- **Leistungen-Graph (v5):** „Personalisierte Social-Media-Strategien“, „Personalisierte“ in Gold kursiv auf dem Wort (24,64 s).
 - **Typografie (v4):** eine Familie für alles: Archivo. Schlüsselwörter Black (900), Akzentwörter Black kursiv in Gold/Bronze
   (ersetzt Instrument Serif), Kleintexte SemiBold. Laufweite −0,035 em bei großen Wörtern.
 - **Endkarte:** dunkel (Espresso) mit *Zusammenarbeit* in Gold-Serif und den Kontakt-Platzhaltern, abweichend vom

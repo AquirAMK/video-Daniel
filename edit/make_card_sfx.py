@@ -75,3 +75,30 @@ c = np.zeros(len(sw) + n_tap)
 c[: len(sw)] += sw
 c[len(sw) - int(0.02 * SR): len(sw) - int(0.02 * SR) + n_tap] += tap
 save("card-c-swishtap", c)
+
+
+# ---------- Freigegeben: Variante A (Nutzer-Go) — finale Stereo-Dateien ----------
+# Zwei klar getrennte Pops: rechts (erstes Video), links (zweites Video, einen Ganzton höher),
+# Nachklang auf 0,3 s gekürzt, damit der zweite Einsatz nicht verwischt.
+def pan_stereo(x, pan):
+    th = (pan + 1) * np.pi / 4
+    return np.stack([x * np.cos(th), x * np.sin(th)], axis=1)
+
+
+def tail(x, keep=0.30, fade=0.12):
+    x = x[: int(keep * SR)].copy()
+    f = int(fade * SR)
+    x[-f:] *= raised(f)[::-1]
+    return x
+
+
+def pitch_up(x, semitones):
+    r = 2 ** (semitones / 12)  # schneller abspielen = höher und kürzer
+    idx = np.arange(0, len(x) - 1, r)
+    return np.interp(idx, np.arange(len(x)), x)
+
+
+for name, sig, pan in [("card-pop-r", tail(pop), +0.4), ("card-pop-l", tail(pitch_up(pop, 2)), -0.4)]:
+    y = pan_stereo(sig / np.abs(sig).max() * 10 ** (-6 / 20), pan)
+    sf.write(f"{out_dir}/{name}.wav", y.astype(np.float32), SR, subtype="PCM_24")
+    print(f"{name}.wav  {len(y) / SR:.2f} s  Pan {pan:+.1f}")

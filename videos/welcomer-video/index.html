@@ -1105,7 +1105,7 @@
         <div id="ccard-l" class="ccard">
           <div class="ccard-glow"></div>
           <div class="ccard-frame">
-            <video id="clip2" src="assets/clip2.mp4" muted playsinline data-start="38.56" data-duration="2.04" data-track-index="4"></video>
+            <video id="clip2" src="assets/clip2.mp4" muted playsinline data-start="38.65" data-duration="1.95" data-track-index="4"></video>
             <div class="ccard-sheen"></div>
           </div>
         </div>
@@ -1252,8 +1252,9 @@
       <audio id="sfx-pop-4" src="assets/sfx/pop.mp3" data-start="24.56" data-duration="0.72" data-volume="0.087" data-track-index="11"></audio>
       <audio id="sfx-wh-f5" src="assets/sfx/whoosh-short.mp3" data-start="28.965" data-duration="0.57" data-volume="0.067" data-track-index="10"></audio>
       <audio id="sfx-wh-inv" src="assets/sfx/whoosh.mp3" data-start="32.48" data-duration="0.57" data-volume="0.08" data-track-index="10"></audio>
-      <audio id="sfx-ding-r" src="assets/sfx/ding-soft-gis.wav" data-start="38.38" data-duration="1.6" data-volume="0.07" data-track-index="11"></audio>
-      <audio id="sfx-ding-l" src="assets/sfx/ding-soft-cis.wav" data-start="38.64" data-duration="1.6" data-volume="0.06" data-track-index="12"></audio>
+      <!-- Kunden-Karten: weicher Pop (Variante A, vom Nutzer freigegeben), zweimal: rechts auf der Achtel, links auf der „1“ -->
+      <audio id="sfx-card-r" src="assets/sfx/card-pop-r.wav" data-start="38.428" data-duration="0.3" data-volume="0.226" data-track-index="11"></audio>
+      <audio id="sfx-card-l" src="assets/sfx/card-pop-l.wav" data-start="38.751" data-duration="0.3" data-volume="0.237" data-track-index="12"></audio>
       <audio id="sfx-wh-cards" src="assets/sfx/whoosh-short.mp3" data-start="40.26" data-duration="0.57" data-volume="0.047" data-track-index="10"></audio>
       <audio id="sfx-wh-shrink2" src="assets/sfx/whoosh.mp3" data-start="46.483" data-duration="0.57" data-volume="0.074" data-track-index="10"></audio>
       <audio id="sfx-wh-scroll" src="assets/sfx/whoosh-short.mp3" data-start="47.48" data-duration="0.57" data-volume="0.08" data-track-index="10"></audio>
@@ -1600,8 +1601,8 @@
           tl.to(el.querySelector(".ccard-glow"), { keyframes: glowK, immediateRender: false }, T0);
           tl.to(el.querySelector(".ccard-sheen"), { keyframes: sheenK, immediateRender: false }, T0);
         }
-        cardDriver("#ccard-r", TRACK_R, { spawn: 38.36, detach: 38.93, exit: 40.3, dy: -24, driftX: 8, rot0: 9, rot1: 4 });
-        cardDriver("#ccard-l", TRACK_L, { spawn: 38.62, detach: 38.95, exit: 40.34, dy: -24, driftX: -8, rot0: -9, rot1: -4 });
+        cardDriver("#ccard-r", TRACK_R, { spawn: 38.39, detach: 38.93, exit: 40.3, dy: -24, driftX: 8, rot0: 9, rot1: 4 });
+        cardDriver("#ccard-l", TRACK_L, { spawn: 38.71, detach: 38.95, exit: 40.34, dy: -24, driftX: -8, rot0: -9, rot1: -4 });
 
         // ---------- One-Pager 2: nach ganz unten scrollen (46.503 – 48.75, Takt-genau) ----------
         const op2 = q("#op2");

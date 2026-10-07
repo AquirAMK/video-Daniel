@@ -38,8 +38,9 @@ warm beleuchteten Hotel-Lobby. Premium-Look à la Iman Gadzhi: ruhig, edel, eine
 - Alle Bildschirmtexte deutsch, echte Umlaute und ß, deutsche Typografie
 - Format bleibt 16:9 (1920 × 1080), kein 9:16-Export
 - Musik: „Family Affair“ (Instrumental, 92,9 BPM), Nutzerwunsch. Video startet auf einer „1“, Sprung ins Song-Outro bei 46,503 s,
-  Schlussschlag bei 59,421 s direkt nach dem letzten Wort. Voiceover-Carve gegen die Stimme, Bett ca. 17 LU unter der Stimme
-  (Nutzer: „etwas zurückhaltender“).
+  Schlussschlag bei 59,421 s direkt nach dem letzten Wort. Voiceover-Carve gegen die Stimme, Bett ca. 20 LU unter der Stimme
+  (Nutzer: zweimal „etwas leiser“).
   Hinweis an den Nutzer: kommerzieller Song, für die Website ist eine Lizenz nötig.
 - SFX sehr dezent (insgesamt ca. −10,5 dB ggü. v1), keine Bass-Booms, kein Schluss-Chime; bei den Kunden-Karten ein weicher
-  „Ding“ in der Tonart des Songs (Gis/Cis, `edit/make_ding.py`) statt des Sparkles
+  Pop (Variante A, vom Nutzer per Hörprobe freigegeben), zweimal: rechts auf der Achtel 38,43 s, links auf der „1“ 38,75 s
+- Leistungen-Graph: „Personalisierte Social-Media-Strategien“ („Personalisierte“ in Gold, das Alleinstellungsmerkmal)
