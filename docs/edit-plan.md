@@ -86,7 +86,10 @@ Ergebnis: ca. **58–60 s** statt 1:09.
   rechte Karte 38,39 s / Pop 38,43 (Achtel, rechts), linke Karte 38,71 s / Pop 38,75 (Downbeat, links, einen Ganzton höher).
 - **Leistungen-Graph (v5):** „Personalisierte Social-Media-Strategien“, „Personalisierte“ in Gold kursiv auf dem Wort (24,64 s).
 - **Typografie (v4):** eine Familie für alles: Archivo. Schlüsselwörter Black (900), Akzentwörter Black kursiv in Gold/Bronze
-  (ersetzt Instrument Serif), Kleintexte SemiBold. Laufweite −0,035 em bei großen Wörtern.
+  (ersetzt Instrument Serif), Kleintexte SemiBold.
+- **Versalien (v8):** alle Haupttexte in Großbuchstaben (Hook, Captions, Allerwichtigste, wachsen, Blueprint/Umsetzung,
+  Endkarte); große Wörter −0,01 em, kleine Versalzeilen +0,06–0,08 em gesperrt. Kleine UI-Texte bleiben wie gesetzt
+  (Pop-ups/Kontakt-Karten, Chips „Telefonisch“/„WhatsApp“, One-Pager-Mockups, „Ganz oben“, Icon-Beschriftungen, Kontaktzeile).
 - **Endkarte:** dunkel (Espresso) mit *Zusammenarbeit* in Gold-Serif und den Kontakt-Platzhaltern, abweichend vom
   Plan (helles Papier); auf Wunsch umstellbar.
 - **Vorschau v1:** 60,5 s, −14,6 LUFS, Spitzenpegel −1,4 dBTP. Master `renders/welcomer_vorschau_v1.mp4`,

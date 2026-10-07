@@ -54,6 +54,16 @@
         background: var(--espresso);
         font-family: "Archivo", sans-serif;
         color: var(--cream);
+        text-transform: uppercase;
+      }
+      /* Kleine UI-Texte (Pop-ups, Kontakt-Karten, Chips, Mockups, Icon-Beschriftungen, Kontaktzeile) bleiben wie gesetzt */
+      .op,
+      .op-tag,
+      .gcard,
+      .chip,
+      .ic-label,
+      #end-contact {
+        text-transform: none;
       }
       .layer {
         position: absolute;
@@ -117,8 +127,8 @@
       }
       #hook-small {
         position: absolute;
-        left: 352px;
-        top: 116px;
+        left: 318px;
+        top: 141px;
         font-weight: 700;
         font-size: 34px;
         letter-spacing: 0.42em;
@@ -129,13 +139,13 @@
         position: absolute;
         left: 0;
         width: 1920px;
-        top: 142px;
+        top: 166px;
         text-align: center;
         font-style: italic;
         font-weight: 900;
-        font-size: 196px;
+        font-size: 167px;
         line-height: 1;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.01em;
         color: #241810;
         white-space: nowrap;
       }
@@ -183,22 +193,23 @@
       }
       .cap .s {
         font-weight: 600;
-        font-size: 34px;
+        font-size: 28px;
+        letter-spacing: 0.06em;
         line-height: 1.25;
         color: #2b2018;
       }
       .cap .b {
         font-weight: 900;
-        font-size: 78px;
+        font-size: 68px;
         line-height: 0.98;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.01em;
       }
       .cap .b.serif {
         font-style: italic;
         font-weight: 900;
-        font-size: 84px;
+        font-size: 72px;
         line-height: 0.98;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.01em;
         color: var(--bronze);
       }
       .cap .w {
@@ -493,21 +504,21 @@
         position: absolute;
         opacity: 0;
         left: 262px;
-        top: 352px;
+        top: 397px;
         font-weight: 700;
-        font-size: 46px;
+        font-size: 40px;
         color: var(--bronze);
-        letter-spacing: 0.02em;
+        letter-spacing: 0.08em;
       }
       #aw-word {
         position: absolute;
         left: 240px;
-        top: 415px;
+        top: 451px;
         font-style: italic;
         font-weight: 900;
-        font-size: 176px;
+        font-size: 133px;
         line-height: 1;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.01em;
         color: var(--ink);
         white-space: nowrap;
       }
@@ -524,7 +535,8 @@
         left: 264px;
         top: 700px;
         font-weight: 500;
-        font-size: 42px;
+        font-size: 34px;
+        letter-spacing: 0.06em;
         color: #3a2c20;
         white-space: nowrap;
       }
@@ -636,7 +648,8 @@
         left: 300px;
         top: 930px;
         font-weight: 600;
-        font-size: 38px;
+        font-size: 32px;
+        letter-spacing: 0.06em;
         color: rgba(244, 236, 221, 0.8);
       }
       #ic-biz span,
@@ -649,12 +662,12 @@
       #ic-grow {
         position: absolute;
         left: 845px;
-        top: 526px;
+        top: 543px;
         font-style: italic;
         font-weight: 900;
-        font-size: 146px;
+        font-size: 125px;
         line-height: 1;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.01em;
         color: var(--gold);
         opacity: 0;
       }
@@ -667,22 +680,23 @@
       #bp-bis {
         position: absolute;
         font-weight: 600;
-        font-size: 42px;
+        font-size: 34px;
+        letter-spacing: 0.08em;
         color: rgba(244, 236, 221, 0.8);
         opacity: 0;
       }
       #bp-vom {
         left: 360px;
-        top: 302px;
+        top: 330px;
       }
       #bp-blue {
         position: absolute;
         left: 350px;
-        top: 378px;
+        top: 401px;
         font-weight: 900;
-        font-size: 126px;
+        font-size: 98px;
         line-height: 1;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.01em;
         color: var(--cream);
         opacity: 0;
       }
@@ -701,12 +715,12 @@
       #bp-um {
         position: absolute;
         left: 990px;
-        top: 680px;
+        top: 699px;
         font-style: italic;
         font-weight: 900;
-        font-size: 144px;
+        font-size: 121px;
         line-height: 1;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.01em;
         color: var(--gold);
         opacity: 0;
       }
@@ -715,7 +729,8 @@
         left: 1008px;
         top: 852px;
         font-weight: 500;
-        font-size: 40px;
+        font-size: 32px;
+        letter-spacing: 0.06em;
         color: rgba(244, 236, 221, 0.88);
       }
 
@@ -863,23 +878,24 @@
         position: absolute;
         left: 0;
         width: 1920px;
-        top: 340px;
+        top: 382px;
         text-align: center;
         font-weight: 600;
-        font-size: 44px;
+        font-size: 36px;
+        letter-spacing: 0.08em;
         color: rgba(244, 236, 221, 0.86);
       }
       #end-word {
         position: absolute;
         left: 0;
         width: 1920px;
-        top: 418px;
+        top: 437px;
         text-align: center;
         font-style: italic;
         font-weight: 900;
-        font-size: 160px;
+        font-size: 137px;
         line-height: 1;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.01em;
         color: var(--gold);
         opacity: 0;
       }
@@ -890,7 +906,8 @@
         top: 618px;
         text-align: center;
         font-weight: 600;
-        font-size: 44px;
+        font-size: 36px;
+        letter-spacing: 0.08em;
         color: rgba(244, 236, 221, 0.86);
       }
       #end-rule {
@@ -1268,8 +1285,8 @@
     <script>
       Promise.all([
         document.fonts.load('600 34px "Archivo"'),
-        document.fonts.load('900 78px "Archivo"'),
-        document.fonts.load('italic 900 84px "Archivo"'),
+        document.fonts.load('900 68px "Archivo"'),
+        document.fonts.load('italic 900 72px "Archivo"'),
       ])
         .catch(() => {})
         .then(function () {
