@@ -22,14 +22,14 @@ warm beleuchteten Hotel-Lobby. Premium-Look à la Iman Gadzhi: ruhig, edel, eine
 - assets/aroll.mp4 — Rohschnitt der Rohdatei (Pausen/Füllwörter entfernt, gegradet, 1080p30, 59,67 s), Basis-Spur mit Ton
 - assets/clip1.mp4 — Kunden-Clip 1 (Sushi-Laden), ab 0:00, 4:5 zugeschnitten (eingebrannte Untertitel weggeschnitten), stumm
 - assets/clip2.mp4 — Kunden-Clip 2 (Restaurant), ab 0:16, 4:5 zugeschnitten, stumm
-- assets/fonts/ — Manrope (Sans) + Instrument Serif (kursiv)
+- assets/fonts/ — Archivo (variabel: Gewicht 100–900, Breite 62–125 %, normal + kursiv), eine Familie für alle Texte
 - assets/music/bgm_edit.wav — Musikbett „Family Affair“ (Mary J. Blige, Instrumental), vom Nutzer geliefert, takt-genau geschnitten mit `edit/make_bgm.py` (nicht im Git)
 
 ## Customizations
 
 - Kunden-Clips erscheinen nur kurz (~2 s) auf den Handflächen des Sprechers (Hand-Tracking), Ton aus, **kein Text** dazu
 - Keine Namen / Lower Thirds, **kein Wasserzeichen**
-- Kontakt-Elemente (E-Mail, Telefon, WhatsApp) mit Platzhalter-Daten
+- Kontakt-Elemente (E-Mail, Telefon, WhatsApp) mit den echten Daten: bremen.bites@gmail.com · 0160 7913817
 - Hook „Willkommen“ hinter dem freigestellten Sprecher (Matte-Composite nach dem Render)
 - Straffer Schnitt (~60 s)
 
@@ -38,6 +38,8 @@ warm beleuchteten Hotel-Lobby. Premium-Look à la Iman Gadzhi: ruhig, edel, eine
 - Alle Bildschirmtexte deutsch, echte Umlaute und ß, deutsche Typografie
 - Format bleibt 16:9 (1920 × 1080), kein 9:16-Export
 - Musik: „Family Affair“ (Instrumental, 92,9 BPM), Nutzerwunsch. Video startet auf einer „1“, Sprung ins Song-Outro bei 46,503 s,
-  Schlussschlag bei 59,421 s direkt nach dem letzten Wort. Voiceover-Carve gegen die Stimme, Bett ca. 14 LU unter der Stimme.
+  Schlussschlag bei 59,421 s direkt nach dem letzten Wort. Voiceover-Carve gegen die Stimme, Bett ca. 17 LU unter der Stimme
+  (Nutzer: „etwas zurückhaltender“).
   Hinweis an den Nutzer: kommerzieller Song, für die Website ist eine Lizenz nötig.
-- SFX dezent (ca. −7 dB), keine Bass-Booms und kein Schluss-Chime (kollidieren mit der Musik)
+- SFX sehr dezent (insgesamt ca. −10,5 dB ggü. v1), keine Bass-Booms, kein Schluss-Chime; bei den Kunden-Karten ein weicher
+  „Ding“ in der Tonart des Songs (Gis/Cis, `edit/make_ding.py`) statt des Sparkles
