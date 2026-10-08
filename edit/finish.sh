@@ -13,7 +13,9 @@ set -euo pipefail
 IN="${1:?render.mp4}"
 OUT="${2:?ausgabe.mp4}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
-FG="$HERE/matte/hook_fg.mov"   # RGBA, 30 fps, ab t=0 (Sprecher A)
+FG="${FG:-$HERE/matte/hook_fg.mov}"   # RGBA, ab t=0 (Sprecher A); 4K60-Master: FG=edit/matte/hook_fg_4k.mov
+# Video-Encoder (überschreibbar, z. B. für das 4K60-Master)
+VENC="${VENC:--c:v libx264 -preset slow -crf 16}"
 HOOK_END=1.12                  # Hook-Text ist bis ~1,08 s sichtbar
 TARGET_I=-14
 CEIL=0.767                     # Limiter-Decke −2,3 dBFS (linear), Reserve für AAC-Überschwinger (~0,3 dB)
@@ -45,7 +47,7 @@ done
 ffmpeg -hide_banner -v error -y -i "$IN" -i "$FG" -i "$TMP/m.wav" \
   -filter_complex "[1:v]format=yuva444p,setpts=PTS-STARTPTS[fg];[0:v][fg]overlay=x=0:y=0:eof_action=pass:enable='lt(t,$HOOK_END)':format=auto,format=yuv420p[v]" \
   -map "[v]" -map 2:a \
-  -c:v libx264 -preset slow -crf 16 -pix_fmt yuv420p -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
+  $VENC -pix_fmt yuv420p -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
   -c:a aac -b:a 256k -movflags +faststart "$OUT"
 
 echo "Eingang: ${I0} LUFS, ${TP0} dBTP"
