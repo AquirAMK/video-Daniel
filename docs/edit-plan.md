@@ -101,4 +101,6 @@ Ergebnis: ca. **58–60 s** statt 1:09.
   −14,1 LUFS, True Peak −1,7 dBTP, 60,5 s). Web-Kopie < 30 MB: `welcomer_final_web.mp4`.
 - Pipeline: `edit/make_edl.py` → `edit/cut_segments.sh` (A-Roll) · `edit/make_bgm.py` (Musikbett) ·
   `edit/make_card_sfx.py` (Karten-Pops) · HyperFrames-Render · `edit/finish.sh` (Freisteller + Mastering).
+- 4K60-Master: `renders/welcomer_final_4k60.mp4` (3840 × 2160, 60 fps, H.264 CRF 15, ~38 Mbit/s, AAC 256k,
+  −14,1 LUFS, 290 MB) über `edit/cut_segments_4k.sh` + `edit/render_4k60.sh`. An den Nutzer per Slack-DM geliefert.
 - Musik „Family Affair“: kommerzieller Song, vor der Veröffentlichung auf der Website Lizenz klären.
