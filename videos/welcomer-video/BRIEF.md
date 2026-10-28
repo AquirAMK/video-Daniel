@@ -29,7 +29,7 @@ warm beleuchteten Hotel-Lobby. Premium-Look à la Iman Gadzhi: ruhig, edel, eine
 
 - Kunden-Clips erscheinen nur kurz (~2 s) auf den Handflächen des Sprechers (Hand-Tracking), Ton aus, **kein Text** dazu
 - Keine Namen / Lower Thirds, **kein Wasserzeichen**
-- Kontakt-Elemente (E-Mail, Telefon, WhatsApp) mit den echten Daten: bremen.bites@gmail.com · 0160 7913817
+- Kontakt-Elemente (E-Mail, Telefon, WhatsApp) mit den echten Daten: g-e-media@outlook.de · 0160 7913817
 - Hook „Willkommen“ hinter dem freigestellten Sprecher (Matte-Composite nach dem Render)
 - Straffer Schnitt (~60 s)
 

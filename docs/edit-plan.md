@@ -74,7 +74,7 @@ Ergebnis: ca. **58–60 s** statt 1:09.
   Untertitel entfernt), keinerlei Text.
 - **Captions:** zweistufig (kleine Einleitung + großes Schlüsselwort), Zonen links/rechts neben dem Kopf,
   pro Satz genau ein Akzentwort in Serif kursiv.
-- **Kontaktdaten:** `bremen.bites@gmail.com`, `0160 7913817` (in `index.html` an je 3 Stellen: One-Pager, Glas-Karten, Endkarte).
+- **Kontaktdaten:** `g-e-media@outlook.de`, `0160 7913817` (in `index.html` an je 3 Stellen: One-Pager, Glas-Karten, Endkarte).
 - **Musik:** „Family Affair“ (Instrumental), vom Nutzer nachgeliefert. Tempo 92,9 BPM (Takt 2,5835 s), 8-Takt-Phrasen.
   Schnitt (`edit/make_bgm.py`): Video 0–46,503 s = Song-Takte 6–23, danach Song-Outro (Takte 96–101), Schlussschlag 59,421 s.
   Mix: Voiceover-Carve (Stärke 0,8) gegen die Stimme, Bett-Pegel 0,16 (v4/v5: je −3 dB auf Wunsch), Hand-Stufe „Akzente Start/Schluss“.
